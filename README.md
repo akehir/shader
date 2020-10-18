@@ -12,9 +12,9 @@ You can find the live demo at: https://shader.akehir.com.
 If you just want to use the library, follow the following 3 simple steps. For contributing, or building the library locally, see the section on [building](#building) the library.
 
 Supported Angular Versions
-| Angular Version | WebGL Fluid Simulation V |
+| Angular Version | WebGL Shader Library     |
 | --------------- | ------------------------ |
-| 10.x            | ^1.0.0                   |
+| 10.x            | ^0.1.0                   |
 
 ### Step 1: Install
 
@@ -110,14 +110,33 @@ import { ShaderService } from '@triangular/shader';
   templateUrl: './example.component.html',
   styleUrls: ['./example.component.css'],
 })
-export class ExampleComponent {
+export class ExampleComponent implements AfterViewInit  {
 
-  constructor(private fluidSimulation: ShaderService) { }
+  constructor(private shader: ShaderService) { }
 
-    onClick() {
-      // Toggle the simulation
-      this.fluidSimulation.PAUSED = !this.fluidSimulation.PAUSED;
-    }
+   ngAfterViewInit() {
+       this.shader.RESIZE = true;
+   
+       this.shader.createProgram(
+         'shader-bane',
+`#version 300 es
+in vec4 a_position;
+
+void main() {
+  gl_Position = a_position;
+}
+        `,
+        `#version 300 es
+precision highp float;
+
+out vec4 outColor;
+
+void main() {
+ outColor = vec4(1, 0, 0.5, 1); // return reddish-purple
+}
+        `,
+       ).subscribe();
+     }
 }
 ```
 
@@ -163,7 +182,7 @@ npm run lint
 
 ## Built With
 
-* [WebGL](https://github.com/angular/angular) - 3D Graphics for the Web
+* [WebGL](https://www.khronos.org/webgl/) - 3D Graphics for the Web
 * [Angular](https://github.com/angular/angular) - The web framework used
 * [NPM](https://www.npmjs.com/) - Dependency Management
 * [Gitlab](https://git.akehir.com) - Source Control & CI Runner

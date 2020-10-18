@@ -1,29 +1,27 @@
-# Angular WebGL Fluid Simulation Component
+# Angular WebGL Shader Component
 
-If you want to use a fancy WebGL fluid simulation in your Angular App, this small demo can get you started. 
+If you want to use a fancy WebGL shader in your Angular App, this small demo can get you started. 
 
 You can see the component running in the background of the example app. Press `p` to toggle the pause, and press `s` to download a screenshot of the simulation. Press `w` to create more splashes.
 
 ## Demo
-You can find the live demo at: https://fluid-simulation.akehir.com.
+You can find the live demo at: https://shader.akehir.com.
 
 ## Getting Started
 
 If you just want to use the library, follow the following 3 simple steps. For contributing, or building the library locally, see the section on [building](#building) the library.
 
 Supported Angular Versions
-| Angular Version | WebGL Fluid Simulation V |
+| Angular Version | WebGL Shader Library     |
 | --------------- | ------------------------ |
-|  7.x, 8.x       | 1.0.1                    |
-|  9.x            | ^2.0.0                   |
-| 10.x            | ^3.0.0                   |
+| 10.x            | ^0.1.0                   |
 
 ### Step 1: Install
 
 Install the npm package.
 
 ```
-npm i @triangular/fluid-simulation
+npm i @triangular/shader
 ```
 
 ### Step 2: Add to NgModule Imports
@@ -31,7 +29,7 @@ npm i @triangular/fluid-simulation
 Then, add the __FluidSimulationModule__ to the imports of your app.
 
 ```typescript
-import { ShaderModule } from '@triangular/fluid-simulation';
+import { ShaderModule } from '@triangular/shader';
 
 @NgModule({
     declarations: [
@@ -49,15 +47,15 @@ export class AppModule { }
 ```
 
 ### Step 3: Add Component to App
-Now you can use the provided component __<webgl-fluid-simulation></webgl-fluid-simulation>__ to create a canvas element with the simulation.
+Now you can use the provided component __<webgl-shader></webgl-shader>__ to create a canvas element with the simulation.
 ```html
-<webgl-fluid-simulation></webgl-fluid-simulation>
+<webgl-shader></webgl-shader>
 ```
 
 Depending on whether you want to use certain features, or positions for the module, you can add styles as follows. It is important to note, that the canvas itself should not be absolutely positioned.
 
 ```css
-webgl-fluid-simulation {
+webgl-shader {
   top: 0;
   left: 0;
   right: 0;
@@ -66,7 +64,7 @@ webgl-fluid-simulation {
   z-index: -1;
 }
 
-webgl-fluid-simulation canvas {
+webgl-shader canvas {
   width: 100%;
   height: 100%;
   /* the canvas position cannot be absolute, otherwise the js resize will bug out */
@@ -105,21 +103,40 @@ The service will be extended to include more functionality (for example triggeri
 
 ```typescript
 import { Component } from '@angular/core';
-import { ShaderService } from '@triangular/fluid-simulation';
+import { ShaderService } from '@triangular/shader';
 
 @Component({
   selector: 'app-example',
   templateUrl: './example.component.html',
   styleUrls: ['./example.component.css'],
 })
-export class ExampleComponent {
+export class ExampleComponent implements AfterViewInit  {
 
-  constructor(private fluidSimulation: ShaderService) { }
+  constructor(private shader: ShaderService) { }
 
-    onClick() {
-      // Toggle the simulation
-      this.fluidSimulation.PAUSED = !this.fluidSimulation.PAUSED;
-    }
+   ngAfterViewInit() {
+       this.shader.RESIZE = true;
+   
+       this.shader.createProgram(
+         'shader-bane',
+`#version 300 es
+in vec4 a_position;
+
+void main() {
+  gl_Position = a_position;
+}
+        `,
+        `#version 300 es
+precision highp float;
+
+out vec4 outColor;
+
+void main() {
+ outColor = vec4(1, 0, 0.5, 1); // return reddish-purple
+}
+        `,
+       ).subscribe();
+     }
 }
 ```
 
@@ -130,7 +147,7 @@ As a pre-requisite to build the library, you need to install all the dependencie
 Before the sample app can be run, you need to build the library itself.
 
 ```
-npm run ng -- build fluid-simulation-lib --progress=false
+npm run ng -- build shader-lib --progress=false
 ```
 
 ### Building the Sample App
@@ -165,7 +182,7 @@ npm run lint
 
 ## Built With
 
-* [WebGL](https://github.com/angular/angular) - 3D Graphics for the Web
+* [WebGL](https://www.khronos.org/webgl/) - 3D Graphics for the Web
 * [Angular](https://github.com/angular/angular) - The web framework used
 * [NPM](https://www.npmjs.com/) - Dependency Management
 * [Gitlab](https://git.akehir.com) - Source Control & CI Runner
@@ -188,7 +205,7 @@ We use [SemVer](http://semver.org/) for versioning.
 * **Raphael Ochsenbein** - *Angular Part* - [Akehir](https://github.com/akehir)
 * **Pavel Dobryakovn** - *JavaScript WebGL Fluid Simulation* - [PavelDoGreat](https://github.com/PavelDoGreat)
 
-See also the list of [contributors](https://github.com/akehir/fluid-simulation/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/akehir/shader/contributors) who participated in this project.
 
 ## License
 
@@ -196,6 +213,8 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
+* [Shadertoy](https://www.shadertoy.com/) for creating a place to share cool shaders
+* [WebGL 2 Fundamentals](https://webgl2fundamentals.org/webgl/lessons/webgl-shadertoy.html) for creating a great WebGL Tutorial
 * [Pavel Dobryakov](https://github.com/PavelDoGreat/WebGL-Fluid-Simulation) for creating the original JavaScript WebGL Fluid Simulation
 * [angularindepth](https://blog.angularindepth.com/creating-a-library-in-angular-6-87799552e7e5) for a tutorial for creating an angular library
 * [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2/) for the readme template

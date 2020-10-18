@@ -7,6 +7,10 @@ import { Example3Component } from './example-3.component';
 import { Example4Component } from './example-4.component';
 import { Example5Component } from './example-5.component';
 import { Example6Component } from './example-6.component';
+import { Example7Component } from './example-7.component';
+import { Example8Component } from './example-8.component';
+import { Example9Component } from './example-9.component';
+import { Example10Component } from './example-10.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -19,6 +23,10 @@ describe('AppComponent', () => {
         Example4Component,
         Example5Component,
         Example6Component,
+        Example7Component,
+        Example8Component,
+        Example9Component,
+        Example10Component,
       ],
       providers: [
         ShaderService,
