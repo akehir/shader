@@ -16,6 +16,8 @@ export class Example9Component implements AfterViewInit {
 
   constructor(private shader: ShaderService) {}
 
+  // https://webgl2fundamentals.org/webgl/lessons/webgl-drawing-without-data.html
+  // todo: instead of array / triangle, draw vertexes / point clouds
   ngAfterViewInit() {
     this.shader.createProgram(
       'point-cloud-spheres',
