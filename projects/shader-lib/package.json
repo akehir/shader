@@ -1,0 +1,24 @@
+{
+  "name": "@triangular/shader",
+  "version": "1.0.0",
+  "peerDependencies": {
+    "@angular/common": "^10.0.0",
+    "@angular/core": "^10.0.0"
+  },
+  "homepage": "https://shader.akehir.com",
+  "license" : "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akehir/shader"
+  },
+  "bugs": { "url" : "https://github.com/akehir/shader/issues"
+  , "email" : "raphael@ochsenbe.in"
+  },
+  "author": { "name" : "Raphael Ochsenbein"
+            , "email" : "raphael@ochsenbe.in"
+            , "url" : "https://akehir.com/"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}

@@ -1,0 +1,27 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { AppComponent } from './app.component';
+import { ShaderModule } from '@triangular/shader';
+import { ExampleComponent } from './example.component';
+import { Example2Component } from './example-2.component';
+import { Example3Component } from './example-3.component';
+import { Example4Component } from './example-4.component';
+import { Example5Component } from './example-5.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    ExampleComponent,
+    Example2Component,
+    Example3Component,
+    Example4Component,
+    Example5Component,
+  ],
+    imports: [
+      BrowserModule,
+      ShaderModule.forRoot(),
+    ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
