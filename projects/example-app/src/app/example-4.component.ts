@@ -21,6 +21,6 @@ export class Example4Component implements AfterViewInit {
       'seascape',
       baseVertexShader,
       seascapeFragmentShader,
-    ).subscribe()
+    ).subscribe();
   }
 }

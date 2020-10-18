@@ -1,4 +1,6 @@
 export const MarbleMarcherVertexShader = `#version 300 es
+// https://github.com/HackerPoet/MarbleMarcher/blob/master/assets/vert.glsl
+
 /* This file is part of the Marble Marcher (https://github.com/HackerPoet/MarbleMarcher).
 * Copyright(C) 2018 CodeParade
 *

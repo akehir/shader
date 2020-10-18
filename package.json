@@ -1,5 +1,5 @@
 {
-  "name": "fluid-simulation",
+  "name": "shader",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,10 +7,10 @@
     "build": "ng build",
     "build:lib": "npm run ng build shader-lib --prod",
     "test": "npm run test:lib && npm run test:example",
-    "test:lib": "ng test fluid-simulation-lib --no-watch --progress=false --code-coverage --browsers ChromeHeadless",
+    "test:lib": "ng test shader-lib --no-watch --progress=false --code-coverage --browsers ChromeHeadless",
     "test:example": "ng test example-app --no-watch --progress=false --code-coverage --browsers ChromeHeadless",
     "lint": "ng lint",
-    "lint:fix": "ng lint fluid-simulation-lib --fix",
+    "lint:fix": "ng lint shader-lib --fix",
     "e2e": "ng e2e example-app",
     "postversion": "git push --follow-tags"
   },

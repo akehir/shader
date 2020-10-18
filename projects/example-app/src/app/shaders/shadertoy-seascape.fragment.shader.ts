@@ -9,6 +9,7 @@ export const seascapeFragmentShader = `#version 300 es
     out vec4 outColor;
 
 /*--------------------------------------------------------------------------------------*/
+// https://www.shadertoy.com/view/Ms2SD1
 
 /*
  * "Seascape" by Alexander Alekseev aka TDM - 2014

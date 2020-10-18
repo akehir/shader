@@ -18,10 +18,11 @@ export class ExampleComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.shader.RESIZE = true;
+
     this.shader.createProgram(
       'protean-clouds',
       baseVertexShader,
       proteanCloudsFragmentShader,
-    ).subscribe()
+    ).subscribe();
   }
 }

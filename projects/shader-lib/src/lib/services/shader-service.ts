@@ -32,7 +32,7 @@ export class ShaderService implements ShaderConfig {
     this.ready$.next();
   }
 
-  createProgram(name: string, vertexShader: string, fragmentShader: string, ): Observable<Program> {
+  createProgram(name: string, vertexShader: string, fragmentShader: string): Observable<Program> {
     return this.ready$.asObservable().pipe(
       take(1),
       map(() => {
@@ -40,7 +40,6 @@ export class ShaderService implements ShaderConfig {
         const fs = (gl: Context, ext?) => compileShader(this.gl, this.gl.FRAGMENT_SHADER, fragmentShader);
 
         const program = new Program(this.gl, vs, fs);
-
 
         // look up where the vertex data needs to go.
         const positionAttributeLocation = program.position;
@@ -55,7 +54,7 @@ export class ShaderService implements ShaderConfig {
           resolutionLocation,
           mouseLocation,
           timeLocation,
-        }
+        };
 
         // Create a vertex array object (attribute state)
         const vao = this.gl.createVertexArray();

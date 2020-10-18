@@ -21,6 +21,6 @@ export class Example2Component implements AfterViewInit {
       'example-2',
       baseVertexShader,
       singleColorFragmentShader,
-    ).subscribe()
+    ).subscribe();
   }
 }

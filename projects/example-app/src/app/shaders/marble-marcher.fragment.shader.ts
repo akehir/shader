@@ -1,5 +1,8 @@
 export const MarbleMarcherFragmentShader = `#version 300 es
-      precision highp float;
+// https://github.com/HackerPoet/MarbleMarcher/blob/master/assets/frag.glsl
+
+precision highp float;
+
 /* This file is part of the Marble Marcher (https://github.com/HackerPoet/MarbleMarcher).
 * Copyright(C) 2018 CodeParade
 *

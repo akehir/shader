@@ -9,7 +9,7 @@ import {ngModule, component, styles, service, moduleWithConfiguration} from './c
   encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent {
-  title = 'Angular WebGL Fluid Simulation';
+  title = 'Angular WebGL Shaders';
   step2 = ngModule;
   step3a = component;
   step3b = styles;

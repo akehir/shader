@@ -1,10 +1,10 @@
 import { AfterViewInit, Component, ViewEncapsulation } from '@angular/core';
 import { ShaderService } from '@triangular/shader';
 import { baseVertexShader } from './shaders/base.vertex.shader';
-import { proteanCloudsFragmentShader } from './shaders/shadertoy-protean-clouds.fragment.shader';
+import { universeFragment } from './shaders/shadertoy-universe.fragment.shader';
 
 @Component({
-  selector: 'app-example-3',
+  selector: 'app-example-7',
   templateUrl: './example.component.html',
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
@@ -12,15 +12,15 @@ import { proteanCloudsFragmentShader } from './shaders/shadertoy-protean-clouds.
     ShaderService,
   ]
 })
-export class Example3Component implements AfterViewInit {
+export class Example7Component implements AfterViewInit {
 
   constructor(private shader: ShaderService) {}
 
   ngAfterViewInit() {
     this.shader.createProgram(
-      'protean-clouds',
+      'universe',
       baseVertexShader,
-      proteanCloudsFragmentShader,
+      universeFragment,
     ).subscribe();
   }
 }

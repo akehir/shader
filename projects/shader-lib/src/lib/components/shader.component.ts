@@ -35,9 +35,8 @@ import {
   // tslint:disable
   selector: 'webgl-shader',
   // tslint:enable
-  templateUrl: './shader.component.html',
+  template: '<canvas #canvas></canvas>',
   styleUrls: [],
-  // styleUrls: ['./fluid-simulation.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class ShaderComponent implements OnInit, AfterViewInit {
@@ -222,7 +221,7 @@ export class ShaderComponent implements OnInit, AfterViewInit {
     this.gl.disable(this.gl.BLEND);
     // this.gl.viewport(0, 0, this.velocity.width, this.velocity.height);
 
-    for (let key in this.config.programs) {
+    for (const key of Object.keys(this.config.programs)) {
       const program = this.config.programs[key];
 
       // Tell WebGL how to convert from clip space to pixels
@@ -234,14 +233,16 @@ export class ShaderComponent implements OnInit, AfterViewInit {
       // Bind the attribute/buffer set we want.
       this.gl.bindVertexArray(program.vao);
 
-      if(program.toyUniforms.resolutionLocation) {
+      if (program.toyUniforms.resolutionLocation) {
         this.gl.uniform2f(program.toyUniforms.resolutionLocation, this.gl.canvas.width, this.gl.canvas.height);
       }
-      if(program.toyUniforms.mouseLocation) {
+
+      if (program.toyUniforms.mouseLocation) {
         this.gl.uniform2f(program.toyUniforms.mouseLocation, this.mouseX, this.mouseY);
 
       }
-      if(program.toyUniforms.timeLocation) {
+
+      if (program.toyUniforms.timeLocation) {
         this.gl.uniform1f(program.toyUniforms.timeLocation, this.time);
       }
 

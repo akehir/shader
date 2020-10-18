@@ -1,12 +1,15 @@
 import { TestBed, async } from '@angular/core/testing';
 import { ExampleComponent } from './example.component';
-import { ShaderModule } from '@triangular/shader';
+import { ShaderModule, ShaderService } from '@triangular/shader';
 
 describe('ExampleComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        ExampleComponent
+        ExampleComponent,
+      ],
+      providers: [
+        ShaderService,
       ],
       imports: [
         ShaderModule.forRoot({}),
