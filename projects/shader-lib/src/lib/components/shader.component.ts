@@ -5,7 +5,7 @@ import {
   OnInit,
   ViewChild,
   ViewEncapsulation,
-  NgZone, OnDestroy,
+  NgZone, OnDestroy, Inject,
 } from '@angular/core';
 
 import { ShaderService } from '../services/shader-service';
@@ -26,8 +26,9 @@ import {
   updatePointerMoveData,
   updatePointerDownData,
 } from '../common';
-import { concat, defer, fromEvent, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { combineLatest, concat, defer, fromEvent, Observable, of } from 'rxjs';
+import { distinctUntilChanged, map } from 'rxjs/operators';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   // tslint:disable
@@ -60,19 +61,24 @@ export class ShaderComponent implements OnInit, AfterViewInit, OnDestroy {
   private hidden = true;
   private MOUSE_INTERACTION_LISTENERS: boolean;
   private KEYS_INTERACTION_LISTENERS: boolean;
-
-  pageVisible$ = concat(
-    defer(() => of(!document.hidden)),
-    fromEvent(document, 'visibilitychange')
-      .pipe(
-        map(e => !document.hidden)
-      )
-  );
+  private pageVisible$: Observable<boolean>;
+  private canvasVisible$: Observable<boolean>;
+  private activeStateChange$: Observable<boolean>;
 
   constructor(
+    @Inject(DOCUMENT) document: any,
     private zone: NgZone,
     private config: ShaderService,
-    ) { }
+    ) {
+    // As per: https://medium.com/angular-in-depth/improve-performance-with-lazy-components-f3c5ff4597d2
+    this.pageVisible$ = concat(
+      defer(() => of(!document.hidden)),
+      fromEvent(document, 'visibilitychange')
+        .pipe(
+          map(e => !document.hidden)
+        )
+    );
+  }
 
   ngOnInit() {
   }
@@ -98,6 +104,33 @@ export class ShaderComponent implements OnInit, AfterViewInit, OnDestroy {
       throw new Error('Canvas element is not correctly provided. Cannot initialize webgl fluid simulation.');
     }
 
+    // As per: https://medium.com/angular-in-depth/improve-performance-with-lazy-components-f3c5ff4597d2
+    this.canvasVisible$ = new Observable(observer => {
+      const intersectionObserver = new IntersectionObserver(entries => {
+        observer.next(entries);
+      });
+
+      intersectionObserver.observe(this.canvas);
+
+      return () => { intersectionObserver.disconnect(); };
+
+    })
+      .pipe (
+        map(entries => entries[0] || {isIntersecting: false}),
+        map(entry => entry.isIntersecting),
+        distinctUntilChanged(),
+      );
+
+    // As per: https://medium.com/angular-in-depth/improve-performance-with-lazy-components-f3c5ff4597d2
+    this.activeStateChange$ = combineLatest([
+      this.pageVisible$,
+      this.canvasVisible$,
+    ])
+      .pipe (
+        map(([pageVisible, elementVisible]) => pageVisible && elementVisible),
+        distinctUntilChanged()
+      );
+
     if (this.config.RESIZE) {
       this.resizeCanvas(this.canvas);
     }
@@ -115,11 +148,12 @@ export class ShaderComponent implements OnInit, AfterViewInit, OnDestroy {
     this.zone.runOutsideAngular(() => {
       this.lastUpdateTime = Date.now();
 
-      // this.update();
-      this.pageVisible$.subscribe((visible) => {
+      // Only if element is visible, and tab is open, we execute the rendering.
+      // We also only start the rendering, if the component was previously hidden.
+      this.activeStateChange$.subscribe((visible) => {
         if(visible && this.hidden) {
-          this.hidden = !visible;
-          this.update();
+          this.hidden = !visible; // need to change the state, otherwise update will immediately return
+          this.update(); // Update will call itself until visibility changes or component is destroyed
         }
 
         this.hidden = !visible;
