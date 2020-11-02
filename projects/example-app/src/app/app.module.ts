@@ -29,7 +29,9 @@ import { Example10Component } from './example-10.component';
   ],
     imports: [
       BrowserModule,
-      ShaderModule.forRoot(),
+      ShaderModule.forRoot({
+        RESIZE: false,
+      }),
     ],
   providers: [],
   bootstrap: [AppComponent]

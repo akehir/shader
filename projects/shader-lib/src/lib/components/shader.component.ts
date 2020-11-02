@@ -5,7 +5,7 @@ import {
   OnInit,
   ViewChild,
   ViewEncapsulation,
-  NgZone,
+  NgZone, OnDestroy,
 } from '@angular/core';
 
 import { ShaderService } from '../services/shader-service';
@@ -13,8 +13,6 @@ import { ShaderService } from '../services/shader-service';
 import {
   blit,
   Context,
-  Material,
-  Program,
   getWebGLContext,
   PointerPrototype,
   createFBO,
@@ -27,9 +25,9 @@ import {
   updatePointerUpData,
   updatePointerMoveData,
   updatePointerDownData,
-  getTextureScale,
-  normalizeColor, createTextureAsync,
 } from '../common';
+import { concat, defer, fromEvent, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   // tslint:disable
@@ -39,7 +37,7 @@ import {
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
 })
-export class ShaderComponent implements OnInit, AfterViewInit {
+export class ShaderComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('canvas', {static: true}) canvasRef: ElementRef;
 
   private canvas: HTMLCanvasElement;
@@ -58,12 +56,37 @@ export class ShaderComponent implements OnInit, AfterViewInit {
 
   private blit;
 
+  private destroyed = false;
+  private hidden = true;
+  private MOUSE_INTERACTION_LISTENERS: boolean;
+  private KEYS_INTERACTION_LISTENERS: boolean;
+
+  pageVisible$ = concat(
+    defer(() => of(!document.hidden)),
+    fromEvent(document, 'visibilitychange')
+      .pipe(
+        map(e => !document.hidden)
+      )
+  );
+
   constructor(
     private zone: NgZone,
     private config: ShaderService,
     ) { }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    this.destroyed = true;
+
+    if(this.MOUSE_INTERACTION_LISTENERS) {
+      this.canvas.removeEventListener('mousedown', this.handleMouseDown)
+    }
+
+    if(this.KEYS_INTERACTION_LISTENERS) {
+      window.removeEventListener('keydown', this.handleKeyDown);
+    }
   }
 
   ngAfterViewInit() {
@@ -91,18 +114,20 @@ export class ShaderComponent implements OnInit, AfterViewInit {
     // todo: draw or do things by drawing.
     this.zone.runOutsideAngular(() => {
       this.lastUpdateTime = Date.now();
-      this.update();
+
+      // this.update();
+      this.pageVisible$.subscribe((visible) => {
+        if(visible && this.hidden) {
+          this.hidden = !visible;
+          this.update();
+        }
+
+        this.hidden = !visible;
+      });
 
       if (this.config.MOUSE_INTERACTION_LISTENERS) {
-        this.canvas.addEventListener('mousedown', e => {
-          const posX = scaleByPixelRatio(e.offsetX);
-          const posY = scaleByPixelRatio(e.offsetY);
-          let pointer = this.pointers.find(p => p.id === -1);
-          if (pointer === null) {
-            pointer = new PointerPrototype();
-          }
-          updatePointerDownData(this.canvas, pointer, -1, posX, posY);
-        });
+        this.MOUSE_INTERACTION_LISTENERS = true; // listeners were added
+        this.canvas.addEventListener('mousedown', this.handleMouseDown);
 
         this.canvas.addEventListener('mousemove', e => {
           const pointer = this.pointers[0];
@@ -157,17 +182,8 @@ export class ShaderComponent implements OnInit, AfterViewInit {
         !!this.config.SPLASH_KEY ||
         !!this.config.SCREENSHOT_KEY_CODE
       ) {
-        window.addEventListener('keydown', e => {
-          if (e.code === this.config.PAUSE_KEY_CODE) {
-            this.config.PAUSED = !this.config.PAUSED;
-          }
-          if (e.key === this.config.SPLASH_KEY) {
-            // ...
-          }
-          if (e.code === this.config.SCREENSHOT_KEY_CODE) {
-            this.captureScreenshot();
-          }
-        });
+        this.KEYS_INTERACTION_LISTENERS = true;
+        window.addEventListener('keydown', this.handleKeyDown);
       }
     });
   }
@@ -179,6 +195,7 @@ export class ShaderComponent implements OnInit, AfterViewInit {
   }
 
   update() {
+    if (this.destroyed || this.hidden) { return; }
     const dt = this.calcDeltaTime();
     this.time += dt;
 
@@ -286,4 +303,25 @@ export class ShaderComponent implements OnInit, AfterViewInit {
     URL.revokeObjectURL(datauri);
   }
 
+  private handleMouseDown(e: MouseEvent)  {
+    const posX = scaleByPixelRatio(e.offsetX);
+    const posY = scaleByPixelRatio(e.offsetY);
+    let pointer = this.pointers.find(p => p.id === -1);
+    if (pointer === null) {
+      pointer = new PointerPrototype();
+    }
+    updatePointerDownData(this.canvas, pointer, -1, posX, posY);
+  }
+
+  private handleKeyDown(e: KeyboardEvent) {
+    if (e.code === this.config.PAUSE_KEY_CODE) {
+      this.config.PAUSED = !this.config.PAUSED;
+    }
+    if (e.key === this.config.SPLASH_KEY) {
+      // ...
+    }
+    if (e.code === this.config.SCREENSHOT_KEY_CODE) {
+      this.captureScreenshot();
+    }
+  }
 }

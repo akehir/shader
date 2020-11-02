@@ -14,7 +14,7 @@ If you just want to use the library, follow the following 3 simple steps. For co
 Supported Angular Versions
 | Angular Version | WebGL Shader Library     |
 | --------------- | ------------------------ |
-| 10.x            | ^0.1.0                   |
+| 10.x            | ^0.2.0                   |
 
 ### Step 1: Install
 
@@ -197,8 +197,8 @@ We use [SemVer](http://semver.org/) for versioning.
 
 ### Version History
 
-- 1.0.0: Initial Release
-- 1.0.1: Update Readme
+- 0.1.0: Initial Release
+- 0.2.0: Update API for more Complex Use Cases
 
 ## Authors
 
@@ -213,8 +213,10 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
+* [Pixelshaders.com](http://pixelshaders.com/proposal/) for a great book about shaders
+* [The Book of Shaders](https://thebookofshaders.com/01/) for a great book about shaders
 * [Shadertoy](https://www.shadertoy.com/) for creating a place to share cool shaders
-* [WebGL 2 Fundamentals](https://webgl2fundamentals.org/webgl/lessons/webgl-shadertoy.html) for creating a great WebGL Tutorial
+* [WebGL 2 Fundamentals](https://webgl2fundamentals.org/webgl/lessons/webgl-shadertoy.html) for creating a great WebGL Tutorial, and in depth detail on how to integrate shadertoy shaders 
 * [Pavel Dobryakov](https://github.com/PavelDoGreat/WebGL-Fluid-Simulation) for creating the original JavaScript WebGL Fluid Simulation
 * [angularindepth](https://blog.angularindepth.com/creating-a-library-in-angular-6-87799552e7e5) for a tutorial for creating an angular library
 * [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2/) for the readme template
