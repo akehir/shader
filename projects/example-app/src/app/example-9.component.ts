@@ -24,7 +24,7 @@ export class Example9Component implements AfterViewInit {
       pointCloudSpheresVertexShader,
       pointCloudSpheresFragmentShader,
       (gl) => {
-        const numVerts = 1000;
+        const numVerts = 4069;
         const offset = 0;
 
         return (buffer) => {

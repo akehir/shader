@@ -127,11 +127,11 @@ export class Example5Component implements AfterViewInit, OnDestroy {
 
         this.listener = (e: KeyboardEvent) => {
           if (e.code === 'NumpadAdd') {
-            cameraPosition = [cameraPosition[0] - 1, cameraPosition[1] - 1, cameraPosition[2] - 1];
+            cameraPosition = [cameraPosition[0] - .1, cameraPosition[1] - .1, cameraPosition[2] - .1];
             // cameraPosition = [7, cameraPosition[1] + 1, 7];
             // cameraPosition = [7, 7, cameraPosition[2] + 1];
           } else if (e.code === 'NumpadSubtract') {
-            cameraPosition = [cameraPosition[0] + 1, cameraPosition[1] + 1, cameraPosition[2] + 1];
+            cameraPosition = [cameraPosition[0] + .1, cameraPosition[1] + .1, cameraPosition[2] + .1];
             // cameraPosition = [7, cameraPosition[1] - 1, 7];
             // cameraPosition = [7, 7, cameraPosition[2] - 1];
           }

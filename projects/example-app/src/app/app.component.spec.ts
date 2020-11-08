@@ -11,6 +11,7 @@ import { Example7Component } from './example-7.component';
 import { Example8Component } from './example-8.component';
 import { Example9Component } from './example-9.component';
 import { Example10Component } from './example-10.component';
+import { Example1Component } from './example-1.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -18,6 +19,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         ExampleComponent,
+        Example1Component,
         Example2Component,
         Example3Component,
         Example4Component,
