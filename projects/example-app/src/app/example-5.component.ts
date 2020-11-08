@@ -125,6 +125,14 @@ export class Example5Component implements AfterViewInit, OnDestroy {
         console.log(program);
         console.log('-----------------------------------------------------------------------------');
 
+        let eclipsed = 0;
+        program.step = (dt?) => {
+          eclipsed += dt;
+          cameraPosition = [cameraPosition[0], 1 + 7 * Math.cos(eclipsed), 1 + 7 * Math.cos(eclipsed)];
+          cameraMatrix = lookAt(cameraPosition, target, up, uniformsThatAreTheSameForAllObjects.u_viewInverse);
+          program.gl.uniformMatrix4fv(iMat, false, cameraMatrix);
+        };
+
         this.listener = (e: KeyboardEvent) => {
           if (e.code === 'NumpadAdd') {
             cameraPosition = [cameraPosition[0] - .1, cameraPosition[1] - .1, cameraPosition[2] - .1];

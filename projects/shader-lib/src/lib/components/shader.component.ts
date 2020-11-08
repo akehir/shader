@@ -290,13 +290,13 @@ export class ShaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
       if (program.toyUniforms.mouseLocation) {
         this.gl.uniform2f(program.toyUniforms.mouseLocation, this.mouseX, this.mouseY);
-
       }
 
       if (program.toyUniforms.timeLocation) {
         this.gl.uniform1f(program.toyUniforms.timeLocation, this.time);
       }
 
+      program.step(dt);
     }
   }
 

@@ -12,12 +12,14 @@ export class Program implements WebGLProgram {
   vao: WebGLVertexArrayObject;
   position: GLint;
   render: (buffer?: WebGLFramebuffer) => void;
+  step: (dt?: number) => void = () => {};
 
   constructor(
     gl: Context,
     vertexShader: Shader,
     fragmentShader: Shader,
     render?: (buffer?: WebGLFramebuffer) => void,
+    step?: (dt?: number) => void,
     ext?
   ) {
     this.uniforms = {};
@@ -31,6 +33,10 @@ export class Program implements WebGLProgram {
       this.render = render;
     } else {
       this.render = blit(this.gl);
+    }
+
+    if (typeof step === 'function') {
+      this.step = step;
     }
   }
 
