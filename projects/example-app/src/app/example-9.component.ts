@@ -23,6 +23,15 @@ export class Example9Component implements AfterViewInit {
       'point-cloud-spheres',
       pointCloudSpheresVertexShader,
       pointCloudSpheresFragmentShader,
+      (gl) => {
+        const numVerts = 1000;
+        const offset = 0;
+
+        return (buffer) => {
+          gl.bindFramebuffer(gl.FRAMEBUFFER, buffer);
+          gl.drawArrays(gl.POINTS, offset, numVerts);
+        };
+      }
     ).subscribe();
   }
 }

@@ -12,6 +12,7 @@ import { Example7Component } from './example-7.component';
 import { Example8Component } from './example-8.component';
 import { Example9Component } from './example-9.component';
 import { Example10Component } from './example-10.component';
+import { Example1Component } from './example-1.component';
 
 @NgModule({
   declarations: [
@@ -26,11 +27,13 @@ import { Example10Component } from './example-10.component';
     Example8Component,
     Example9Component,
     Example10Component,
+    Example1Component,
   ],
     imports: [
       BrowserModule,
       ShaderModule.forRoot({
-        RESIZE: false,
+        RESIZE: true,
+        SCREENSHOT_KEY_CODE: 'KeyS',
       }),
     ],
   providers: [],

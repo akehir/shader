@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { ShaderService } from '@triangular/shader';
 import { MarbleMarcherVertexShader } from './shaders/marble-marcher.vertex.shader';
 import { MarbleMarcherFragmentShader } from './shaders/marble-marcher.fragment.shader';
 import { tap } from 'rxjs/operators';
+import { identity, lookAt } from './util/webgl-3d-math';
 
 @Component({
   selector: 'app-example-5',
@@ -13,9 +14,15 @@ import { tap } from 'rxjs/operators';
     ShaderService,
   ]
 })
-export class Example5Component implements AfterViewInit {
+export class Example5Component implements AfterViewInit, OnDestroy {
+
+  private listener: (e: KeyboardEvent) => void;
 
   constructor(private shader: ShaderService) {}
+
+  ngOnDestroy() {
+    window.removeEventListener('keyup', this.listener);
+  }
 
   ngAfterViewInit() {
     this.shader.createProgram(
@@ -56,20 +63,6 @@ export class Example5Component implements AfterViewInit {
         // before setting any uniforms, we need to bind the program.
         program.bind();
 
-        // todo: set the iMat -> Matrix4...
-        const orbitSmooth = 0.995;
-        // const float orbit_dist = level_copy.orbit_dist; // ->>> 3.3
-        // cam_pos = orbit_pt + perp_vec * (orbit_dist * 2.5f);
-        // cam_pos_smooth = cam_pos_smooth*orbit_smooth + cam_pos*(1 - orbit_smooth);
-        //   shader.setUniform("iMat", sf::Glsl::Mat4(cam_mat.data()));
-        //  cam_mat.block<3, 1>(0, 3) = cam_pos_smooth;
-        // mat4: https://stackoverflow.com/questions/38853096/webgl-how-to-bind-values-to-a-mat4-attribute
-        // gl.vertexAttribPointer(loc  , 4, gl.FLOAT, false, 64, 0);
-        // gl.vertexAttribPointer(loc+1, 4, gl.FLOAT, false, 64, 16);
-        // gl.vertexAttribPointer(loc+2, 4, gl.FLOAT, false, 64, 32);
-        // gl.vertexAttribPointer(loc+3, 4, gl.FLOAT, false, 64, 48);
-
-
         //   shader.setUniform("iFracScale", frac_params_smooth[0]);
         program.gl.uniform1f(iFracScale, 1.8);
         //   shader.setUniform("iFracAng1", frac_params_smooth[1]);
@@ -101,10 +94,53 @@ export class Example5Component implements AfterViewInit {
         //   shader.setUniform("iExposure", exposure);
         program.gl.uniform1f(iExposure, 1.0);
 
+
+        // todo: set the iMat -> Matrix4...
+        const orbitSmooth = 0.995;
+        // const float orbit_dist = level_copy.orbit_dist; // ->>> 3.3
+        // cam_pos = orbit_pt + perp_vec * (orbit_dist * 2.5f);
+        // cam_pos_smooth = cam_pos_smooth*orbit_smooth + cam_pos*(1 - orbit_smooth);
+        //   shader.setUniform("iMat", sf::Glsl::Mat4(cam_mat.data()));
+        //  cam_mat.block<3, 1>(0, 3) = cam_pos_smooth;
+        // mat4: https://stackoverflow.com/questions/38853096/webgl-how-to-bind-values-to-a-mat4-attribute
+        // gl.vertexAttribPointer(loc  , 4, gl.FLOAT, false, 64, 0);
+        // gl.vertexAttribPointer(loc+1, 4, gl.FLOAT, false, 64, 16);
+        // gl.vertexAttribPointer(loc+2, 4, gl.FLOAT, false, 64, 32);
+        // gl.vertexAttribPointer(loc+3, 4, gl.FLOAT, false, 64, 48);
+        const uniformsThatAreTheSameForAllObjects = {
+          u_lightWorldPos:         [-50, 30, 100],
+          u_viewInverse:           identity(),
+          u_lightColor:            [1, 1, 1, 1],
+        };
+
+        let cameraPosition = [7, 7, 7];
+        const target = [0, 0, 0];
+        const up = [0, 1, 0];
+        const cameraMatrix = lookAt(cameraPosition, target, up, uniformsThatAreTheSameForAllObjects.u_viewInverse);
+
+        program.gl.uniformMatrix4fv(iMat, false, cameraMatrix);
+
         console.log('MarbleMarcher');
         console.log('-----------------------------------------------------------------------------');
         console.log(program);
         console.log('-----------------------------------------------------------------------------');
+
+        this.listener = (e: KeyboardEvent) => {
+          if (e.code === 'NumpadAdd') {
+            cameraPosition = [cameraPosition[0] - 1, cameraPosition[1] - 1, cameraPosition[2] - 1];
+            // cameraPosition = [7, cameraPosition[1] + 1, 7];
+            // cameraPosition = [7, 7, cameraPosition[2] + 1];
+          } else if (e.code === 'NumpadSubtract') {
+            cameraPosition = [cameraPosition[0] + 1, cameraPosition[1] + 1, cameraPosition[2] + 1];
+            // cameraPosition = [7, cameraPosition[1] - 1, 7];
+            // cameraPosition = [7, 7, cameraPosition[2] - 1];
+          }
+
+          const cameraMatrix = lookAt(cameraPosition, target, up, uniformsThatAreTheSameForAllObjects.u_viewInverse);
+          program.gl.uniformMatrix4fv(iMat, false, cameraMatrix);
+        }
+
+        window.addEventListener('keyup', this.listener);
       }),
     ).subscribe();
   }

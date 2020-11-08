@@ -139,7 +139,7 @@ export class ShaderComponent implements OnInit, AfterViewInit, OnDestroy {
     this.gl = ctx.gl;
     this.ext = ctx.ext;
 
-    this.blit = blit(ctx.gl);
+    // this.blit = blit(ctx.gl);
     this.pointers.push(new PointerPrototype());
 
     this.config.initialize(ctx.gl, ctx.ext);
@@ -310,13 +310,10 @@ export class ShaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
     const fbo = target == null ? null : target.fbo;
 
-    this.gl.drawArrays(
-      this.gl.TRIANGLES,
-      0,     // offset
-      6,     // num vertices to process
-    );
-
-    this.drawDisplay(fbo);
+    // this.drawDisplay(fbo);
+    for (const key of Object.keys(this.config.programs)) {
+      this.config.programs[key].render(fbo);
+    }
   }
 
   drawDisplay(fbo) {
@@ -337,7 +334,7 @@ export class ShaderComponent implements OnInit, AfterViewInit, OnDestroy {
     URL.revokeObjectURL(datauri);
   }
 
-  private handleMouseDown(e: MouseEvent)  {
+  private handleMouseDown = (e: MouseEvent) => {
     const posX = scaleByPixelRatio(e.offsetX);
     const posY = scaleByPixelRatio(e.offsetY);
     let pointer = this.pointers.find(p => p.id === -1);
@@ -347,7 +344,7 @@ export class ShaderComponent implements OnInit, AfterViewInit, OnDestroy {
     updatePointerDownData(this.canvas, pointer, -1, posX, posY);
   }
 
-  private handleKeyDown(e: KeyboardEvent) {
+  private handleKeyDown = (e: KeyboardEvent) => {
     if (e.code === this.config.PAUSE_KEY_CODE) {
       this.config.PAUSED = !this.config.PAUSED;
     }
