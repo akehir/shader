@@ -43,7 +43,7 @@ export class ShaderService implements ShaderConfig {
       map(() => {
         const vs = (gl: Context, ext?) => compileShader(this.gl, this.gl.VERTEX_SHADER, vertexShader);
         const fs = (gl: Context, ext?) => compileShader(this.gl, this.gl.FRAGMENT_SHADER, fragmentShader);
-        const r = getRenderer ? getRenderer(this.gl): null;
+        const r = getRenderer ? getRenderer(this.gl) : null;
 
         const program = new Program(this.gl, vs, fs, r);
 

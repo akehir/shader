@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:lib": "npm run ng build shader-lib --prod",
+    "build:lib": "npm run ng build shader-lib --configuration=production",
     "test": "npm run test:lib && npm run test:example",
     "test:lib": "ng test shader-lib --no-watch --progress=false --code-coverage --browsers ChromeHeadless",
     "test:example": "ng test example-app --no-watch --progress=false --code-coverage --browsers ChromeHeadless",

@@ -86,11 +86,11 @@ export class ShaderComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy() {
     this.destroyed = true;
 
-    if(this.MOUSE_INTERACTION_LISTENERS) {
-      this.canvas.removeEventListener('mousedown', this.handleMouseDown)
+    if (this.MOUSE_INTERACTION_LISTENERS) {
+      this.canvas.removeEventListener('mousedown', this.handleMouseDown);
     }
 
-    if(this.KEYS_INTERACTION_LISTENERS) {
+    if (this.KEYS_INTERACTION_LISTENERS) {
       window.removeEventListener('keydown', this.handleKeyDown);
     }
   }
@@ -151,7 +151,7 @@ export class ShaderComponent implements OnInit, AfterViewInit, OnDestroy {
       // Only if element is visible, and tab is open, we execute the rendering.
       // We also only start the rendering, if the component was previously hidden.
       this.activeStateChange$.subscribe((visible) => {
-        if(visible && this.hidden) {
+        if (visible && this.hidden) {
           this.hidden = !visible; // need to change the state, otherwise update will immediately return
           this.update(); // Update will call itself until visibility changes or component is destroyed
         }

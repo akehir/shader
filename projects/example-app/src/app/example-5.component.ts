@@ -116,7 +116,7 @@ export class Example5Component implements AfterViewInit, OnDestroy {
         let cameraPosition = [7, 7, 7];
         const target = [0, 0, 0];
         const up = [0, 1, 0];
-        const cameraMatrix = lookAt(cameraPosition, target, up, uniformsThatAreTheSameForAllObjects.u_viewInverse);
+        let cameraMatrix = lookAt(cameraPosition, target, up, uniformsThatAreTheSameForAllObjects.u_viewInverse);
 
         program.gl.uniformMatrix4fv(iMat, false, cameraMatrix);
 
@@ -136,9 +136,9 @@ export class Example5Component implements AfterViewInit, OnDestroy {
             // cameraPosition = [7, 7, cameraPosition[2] - 1];
           }
 
-          const cameraMatrix = lookAt(cameraPosition, target, up, uniformsThatAreTheSameForAllObjects.u_viewInverse);
+          cameraMatrix = lookAt(cameraPosition, target, up, uniformsThatAreTheSameForAllObjects.u_viewInverse);
           program.gl.uniformMatrix4fv(iMat, false, cameraMatrix);
-        }
+        };
 
         window.addEventListener('keyup', this.listener);
       }),

@@ -30,7 +30,7 @@ export class Program implements WebGLProgram {
     if (typeof render === 'function') {
       this.render = render;
     } else {
-      this.render= blit(this.gl);
+      this.render = blit(this.gl);
     }
   }
 

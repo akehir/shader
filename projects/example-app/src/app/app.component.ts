@@ -16,16 +16,16 @@ export class AppComponent {
   step3c = moduleWithConfiguration;
   step3d = service;
 
-  example1: boolean = false;
-  example2: boolean = false;
-  example3: boolean = false;
-  example4: boolean = false;
-  example5: boolean = false;
-  example6: boolean = false;
-  example7: boolean = false;
-  example8: boolean = false;
-  example9: boolean = false;
-  example10: boolean = false;
+  example1 = false;
+  example2 = false;
+  example3 = false;
+  example4 = false;
+  example5 = false;
+  example6 = false;
+  example7 = false;
+  example8 = false;
+  example9 = false;
+  example10 = false;
 
   constructor() {}
 }
