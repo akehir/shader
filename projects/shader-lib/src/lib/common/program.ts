@@ -20,11 +20,10 @@ export class Program implements WebGLProgram {
     fragmentShader: Shader,
     render?: (buffer?: WebGLFramebuffer) => void,
     step?: (dt?: number) => void,
-    ext?
   ) {
     this.uniforms = {};
     this.toyUniforms = {};
-    this.program = createProgram(gl, vertexShader, fragmentShader, ext);
+    this.program = createProgram(gl, vertexShader, fragmentShader);
     this.uniforms = getUniforms(gl, this.program);
     this.gl = gl;
     this.position = gl.getAttribLocation(this.program, 'a_position');

@@ -37,7 +37,6 @@
  * @param b b
  * @param dst optional vector3 to store result
  * @return dst or new Vector3 if not provided
- * @memberOf module:webgl-3d-math
  */
 export function subtractVectors(a, b, dst?: Float32Array) {
   dst = dst || new Float32Array(3);
@@ -54,7 +53,6 @@ export function subtractVectors(a, b, dst?: Float32Array) {
  * @param b b
  * @param dst optional vector3 to store result
  * @return dst or new Vector3 if not provided
- * @memberOf module:webgl-3d-math
  */
 export function cross(a, b, dst?: Float32Array) {
   dst = dst || new Float32Array(3);
@@ -69,7 +67,6 @@ export function cross(a, b, dst?: Float32Array) {
  * @param v vector to normalize
  * @param dst optional vector3 to store result
  * @return dst or new Vector3 if not provided
- * @memberOf module:webgl-3d-math
  */
 export function normalize(v, dst?: Float32Array) {
   dst = dst || new Float32Array(3);
@@ -93,7 +90,6 @@ export function normalize(v, dst?: Float32Array) {
  * @param up direction
  * @param [dst] optional matrix to store result
  * @return dst or a new matrix if none provided
- * @memberOf module:webgl-3d-math
  */
 export function lookAt(cameraPosition, target, up, dst) {
   dst = dst || new Float32Array(16);
@@ -126,7 +122,6 @@ export function lookAt(cameraPosition, target, up, dst) {
  * Makes an identity matrix.
  * @param [dst] optional matrix to store result
  * @return dst or a new matrix if none provided
- * @memberOf module:webgl-3d-math
  */
 export function identity(dst?: Float32Array) {
   dst = dst || new Float32Array(16);

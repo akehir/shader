@@ -202,6 +202,7 @@ We use [SemVer](http://semver.org/) for versioning.
 - 0.3.0: Update API for more Complex Use Cases
 - 0.4.0: Update API to add `render` function to `programs` allowing for custom `vertices` to be used by a program. See examples 2 and 9.
 - 0.5.0: Update API to add `step` function to `programs` allowing for custom updating of `uniforms`. See example 5.
+- 0.6.0: Update documentation, cleanup.
 
 ## Authors
 

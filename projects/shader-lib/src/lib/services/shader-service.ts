@@ -1,7 +1,7 @@
 import { Inject, Injectable, Optional } from '@angular/core';
 import { ShaderConfig, ShaderConfigValue } from '../config/shader-config';
 import { defaultConfig } from '../config/default-config';
-import { blit, compileShader, Context, Partial, Program } from '../common';
+import { compileShader, Context, Partial, Program } from '../common';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
@@ -41,8 +41,8 @@ export class ShaderService implements ShaderConfig {
     return this.ready$.asObservable().pipe(
       take(1),
       map(() => {
-        const vs = (gl: Context, ext?) => compileShader(this.gl, this.gl.VERTEX_SHADER, vertexShader);
-        const fs = (gl: Context, ext?) => compileShader(this.gl, this.gl.FRAGMENT_SHADER, fragmentShader);
+        const vs = (gl: Context) => compileShader(gl, gl.VERTEX_SHADER, vertexShader);
+        const fs = (gl: Context) => compileShader(gl, gl.FRAGMENT_SHADER, fragmentShader);
         const r = getRenderer ? getRenderer(this.gl) : null;
 
         const program = new Program(this.gl, vs, fs, r);
