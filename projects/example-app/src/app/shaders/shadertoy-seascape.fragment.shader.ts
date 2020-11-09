@@ -18,8 +18,8 @@ export const seascapeFragmentShader = `#version 300 es
  */
 
 const int NUM_STEPS = 8;
-const float PI\t \t= 3.141592;
-const float EPSILON\t= 1e-3;
+const float PI = 3.141592;
+const float EPSILON= 1e-3;
 #define EPSILON_NRM (0.1 / iResolution.x)
 #define AA
 
@@ -37,23 +37,23 @@ const mat2 octave_m = mat2(1.6,1.2,-1.2,1.6);
 
 // math
 mat3 fromEuler(vec3 ang) {
-\tvec2 a1 = vec2(sin(ang.x),cos(ang.x));
+vec2 a1 = vec2(sin(ang.x),cos(ang.x));
     vec2 a2 = vec2(sin(ang.y),cos(ang.y));
     vec2 a3 = vec2(sin(ang.z),cos(ang.z));
     mat3 m;
     m[0] = vec3(a1.y*a3.y+a1.x*a2.x*a3.x,a1.y*a2.x*a3.x+a3.y*a1.x,-a2.y*a3.x);
-\tm[1] = vec3(-a2.y*a1.x,a1.y*a2.y,a2.x);
-\tm[2] = vec3(a3.y*a1.x*a2.x+a1.y*a3.x,a1.x*a3.x-a1.y*a3.y*a2.x,a2.y*a3.y);
-\treturn m;
+m[1] = vec3(-a2.y*a1.x,a1.y*a2.y,a2.x);
+m[2] = vec3(a3.y*a1.x*a2.x+a1.y*a3.x,a1.x*a3.x-a1.y*a3.y*a2.x,a2.y*a3.y);
+return m;
 }
 float hash( vec2 p ) {
-\tfloat h = dot(p,vec2(127.1,311.7));\t
+float h = dot(p,vec2(127.1,311.7));
     return fract(sin(h)*43758.5453123);
 }
 float noise( in vec2 p ) {
     vec2 i = floor( p );
-    vec2 f = fract( p );\t
-\tvec2 u = f*f*(3.0-2.0*f);
+    vec2 f = fract( p );
+vec2 u = f*f*(3.0-2.0*f);
     return -1.0+2.0*mix( mix( hash( i + vec2(0.0,0.0) ),
                      hash( i + vec2(1.0,0.0) ), u.x),
                 mix( hash( i + vec2(0.0,1.0) ),
@@ -92,10 +92,10 @@ float map(vec3 p) {
 
     float d, h = 0.0;
     for(int i = 0; i < ITER_GEOMETRY; i++) {
-    \td = sea_octave((uv+SEA_TIME)*freq,choppy);
-    \td += sea_octave((uv-SEA_TIME)*freq,choppy);
+    d = sea_octave((uv+SEA_TIME)*freq,choppy);
+    d += sea_octave((uv-SEA_TIME)*freq,choppy);
         h += d * amp;
-    \tuv *= octave_m; freq *= 1.9; amp *= 0.22;
+    uv *= octave_m; freq *= 1.9; amp *= 0.22;
         choppy = mix(choppy,1.0,0.2);
     }
     return p.y - h;
@@ -109,10 +109,10 @@ float map_detailed(vec3 p) {
 
     float d, h = 0.0;
     for(int i = 0; i < ITER_FRAGMENT; i++) {
-    \td = sea_octave((uv+SEA_TIME)*freq,choppy);
-    \td += sea_octave((uv-SEA_TIME)*freq,choppy);
+    d = sea_octave((uv+SEA_TIME)*freq,choppy);
+    d += sea_octave((uv-SEA_TIME)*freq,choppy);
         h += d * amp;
-    \tuv *= octave_m; freq *= 1.9; amp *= 0.22;
+    uv *= octave_m; freq *= 1.9; amp *= 0.22;
         choppy = mix(choppy,1.0,0.2);
     }
     return p.y - h;
@@ -155,9 +155,9 @@ float heightMapTracing(vec3 ori, vec3 dir, out vec3 p) {
     for(int i = 0; i < NUM_STEPS; i++) {
         tmid = mix(tm,tx, hm/(hm-hx));
         p = ori + dir * tmid;
-    \tfloat hmid = map(p);
-\t\tif(hmid < 0.0) {
-        \ttx = tmid;
+    float hmid = map(p);
+if(hmid < 0.0) {
+        tx = tmid;
             hx = hmid;
         } else {
             tm = tmid;
@@ -189,19 +189,19 @@ vec3 getPixel(in vec2 coord, float time) {
     return mix(
         getSkyColor(dir),
         getSeaColor(p,n,light,dir,dist),
-    \tpow(smoothstep(0.0,-0.02,dir.y),0.2));
+    pow(smoothstep(0.0,-0.02,dir.y),0.2));
 }
 
 // main
 void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     float time = iTime * 0.3 + iMouse.x*0.01;
-\t
+
 #ifdef AA
     vec3 color = vec3(0.0);
     for(int i = -1; i <= 1; i++) {
         for(int j = -1; j <= 1; j++) {
-        \tvec2 uv = fragCoord+vec2(i,j)/3.0;
-    \t\tcolor += getPixel(uv, time);
+        vec2 uv = fragCoord+vec2(i,j)/3.0;
+    color += getPixel(uv, time);
         }
     }
     color /= 9.0;
@@ -210,7 +210,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
 #endif
 
     // post
-\tfragColor = vec4(pow(color,vec3(0.65)), 1.0);
+fragColor = vec4(pow(color,vec3(0.65)), 1.0);
 }
 
 /*--------------------------------------------------------------------------------------*/

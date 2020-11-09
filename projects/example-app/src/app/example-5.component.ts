@@ -102,11 +102,6 @@ export class Example5Component implements AfterViewInit, OnDestroy {
         // cam_pos_smooth = cam_pos_smooth*orbit_smooth + cam_pos*(1 - orbit_smooth);
         //   shader.setUniform("iMat", sf::Glsl::Mat4(cam_mat.data()));
         //  cam_mat.block<3, 1>(0, 3) = cam_pos_smooth;
-        // mat4: https://stackoverflow.com/questions/38853096/webgl-how-to-bind-values-to-a-mat4-attribute
-        // gl.vertexAttribPointer(loc  , 4, gl.FLOAT, false, 64, 0);
-        // gl.vertexAttribPointer(loc+1, 4, gl.FLOAT, false, 64, 16);
-        // gl.vertexAttribPointer(loc+2, 4, gl.FLOAT, false, 64, 32);
-        // gl.vertexAttribPointer(loc+3, 4, gl.FLOAT, false, 64, 48);
         const uniformsThatAreTheSameForAllObjects = {
           u_lightWorldPos:         [-50, 30, 100],
           u_viewInverse:           identity(),
