@@ -14,7 +14,7 @@ If you just want to use the library, follow the following 3 simple steps. For co
 Supported Angular Versions
 | Angular Version | WebGL Shader Library     |
 | --------------- | ------------------------ |
-| 10.x            | ^0.4.0                   |
+| 10.x            | 0.1.0  - 0.6.1           |
 
 ### Step 1: Install
 
@@ -208,6 +208,7 @@ We use [SemVer](http://semver.org/) for versioning.
 ## Authors
 
 * **Raphael Ochsenbein** - *Angular Part* - [Akehir](https://github.com/akehir)
+* **Hacker Poet** - *Angular Part* - [HackerPoet](https://github.com/HackerPoet/)
 * **Pavel Dobryakovn** - *JavaScript WebGL Fluid Simulation* - [PavelDoGreat](https://github.com/PavelDoGreat)
 
 See also the list of [contributors](https://github.com/akehir/shader/contributors) who participated in this project.

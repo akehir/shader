@@ -5,7 +5,9 @@ import {
   OnInit,
   ViewChild,
   ViewEncapsulation,
-  NgZone, OnDestroy, Inject,
+  NgZone,
+  OnDestroy,
+  Inject,
 } from '@angular/core';
 
 import { ShaderService } from '../services/shader-service';
