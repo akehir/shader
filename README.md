@@ -14,7 +14,8 @@ If you just want to use the library, follow the following 3 simple steps. For co
 Supported Angular Versions
 | Angular Version | WebGL Shader Library     |
 | --------------- | ------------------------ |
-| 10.x            | ^0.1.0                   |
+| 10.x            | 0.1.0  - 0.6.1           |
+| 11.x            | 0.7.0                    |
 
 ### Step 1: Install
 
