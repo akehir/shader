@@ -54,7 +54,7 @@ webgl-shader canvas {
 `;
 
 export const service = `import { Component } from '@angular/core';
-import { FluidSimulationService } from '@triangular/fluid-simulation';
+import { ShaderService } from '@triangular/shader';
 
 @Component({
   selector: 'app-example',
@@ -63,10 +63,10 @@ import { FluidSimulationService } from '@triangular/fluid-simulation';
 })
 export class ExampleComponent {
 
-  constructor(private fluidSimulation: FluidSimulationService) { }
+  constructor(private shader: ShaderService) { }
 
     onClick() {
       // Toggle the simulation
-      this.fluidSimulation.PAUSED = !this.fluidSimulation.PAUSED;
+      this.shader.PAUSED = !this.shader.PAUSED;
     }
 }`;
