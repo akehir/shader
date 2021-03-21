@@ -16,7 +16,7 @@ module.exports = function (config) {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     coverageIstanbulReporter: {
-      dir: require('path').join(__dirname, '../../coverage/fluid-simulation-lib'),
+      dir: require('path').join(__dirname, '../../coverage/shader-lib'),
       reports: ['html', 'lcovonly'],
       fixWebpackSourcePaths: true
     },

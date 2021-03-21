@@ -258,10 +258,8 @@ export class ShaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   resizeCanvas(canvas: HTMLCanvasElement) {
-    // todo: this seems to increase infinitely the canvas size,
-    // wheras it shouldnt.
-    const width = scaleByPixelRatio(window.innerWidth);
-    const height = scaleByPixelRatio(window.innerHeight);
+    const width = scaleByPixelRatio(window.innerWidth, this.config.RESOLUTION_FACTOR);
+    const height = scaleByPixelRatio(window.innerHeight, this.config.RESOLUTION_FACTOR);
     if (canvas.width !== width || canvas.height !== height) {
       canvas.width = width;
       canvas.height = height;

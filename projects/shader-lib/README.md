@@ -15,7 +15,7 @@ Supported Angular Versions
 | Angular Version | WebGL Shader Library     |
 | --------------- | ------------------------ |
 | 10.x            | 0.1.0  - 0.6.1           |
-| 11.x            | 0.7.0                    |
+| 11.x            | 0.7.0  - 0.7.1           |
 
 ### Step 1: Install
 

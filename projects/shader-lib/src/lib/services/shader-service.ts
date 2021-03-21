@@ -21,6 +21,7 @@ export class ShaderService implements ShaderConfig {
   SPLASH_KEY: string;
   SCREENSHOT_KEY_CODE: string;
   SCREENSHOT_FILE_NAME: string;
+  RESOLUTION_FACTOR: number;
 
   private gl: Context | null;
   private ext: any;

@@ -1,5 +1,5 @@
 /*
- * Public API Surface of fluid-simulation-lib
+ * Public API Surface of shader-lib
  */
 
 export * from './lib/components/shader.component';
