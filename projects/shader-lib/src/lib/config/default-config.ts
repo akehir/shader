@@ -11,4 +11,5 @@ export const defaultConfig: ShaderConfig  = {
   SPLASH_KEY: null,
   SCREENSHOT_FILE_NAME: 'shader',
   RESIZE: false,
+  RESOLUTION_FACTOR: 1,
 };

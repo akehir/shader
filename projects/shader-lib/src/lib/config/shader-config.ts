@@ -16,6 +16,7 @@ export interface ShaderConfig {
   SPLASH_KEY: string;
   SCREENSHOT_KEY_CODE: string;
   SCREENSHOT_FILE_NAME: string;
+  RESOLUTION_FACTOR: number;
   // vertexShaders: string[];
   // fragmentShaders: string[];
   // uniformLocations: string[];
