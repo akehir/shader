@@ -106,48 +106,50 @@ export class ShaderComponent implements OnInit, AfterViewInit, OnDestroy {
       throw new Error('Canvas element is not correctly provided. Cannot initialize webgl fluid simulation.');
     }
 
-    // As per: https://medium.com/angular-in-depth/improve-performance-with-lazy-components-f3c5ff4597d2
-    this.canvasVisible$ = new Observable(observer => {
-      const intersectionObserver = new IntersectionObserver(entries => {
-        observer.next(entries);
-      });
-
-      intersectionObserver.observe(this.canvas);
-
-      return () => { intersectionObserver.disconnect(); };
-
-    })
-      .pipe (
-        map(entries => entries[0] || {isIntersecting: false}),
-        map(entry => entry.isIntersecting),
-        distinctUntilChanged(),
-      );
-
-    // As per: https://medium.com/angular-in-depth/improve-performance-with-lazy-components-f3c5ff4597d2
-    this.activeStateChange$ = combineLatest([
-      this.pageVisible$,
-      this.canvasVisible$,
-    ])
-      .pipe (
-        map(([pageVisible, elementVisible]) => pageVisible && elementVisible),
-        distinctUntilChanged()
-      );
-
-    if (this.config.RESIZE) {
-      this.resizeCanvas(this.canvas);
-    }
-
-    const ctx = getWebGLContext(this.canvas);
-    this.gl = ctx.gl;
-    this.ext = ctx.ext;
-
-    // this.blit = blit(ctx.gl);
-    this.pointers.push(new PointerPrototype());
-
-    this.config.initialize(ctx.gl, ctx.ext);
-
     // todo: draw or do things by drawing.
     this.zone.runOutsideAngular(() => {
+      // As per: https://medium.com/angular-in-depth/improve-performance-with-lazy-components-f3c5ff4597d2
+      this.canvasVisible$ = new Observable(observer => {
+        const intersectionObserver = new IntersectionObserver(entries => {
+          observer.next(entries);
+        });
+
+        intersectionObserver.observe(this.canvas);
+
+        return () => {
+          intersectionObserver.disconnect();
+        };
+
+      })
+        .pipe(
+          map(entries => entries[0] || {isIntersecting: false}),
+          map(entry => entry.isIntersecting),
+          distinctUntilChanged(),
+        );
+
+      // As per: https://medium.com/angular-in-depth/improve-performance-with-lazy-components-f3c5ff4597d2
+      this.activeStateChange$ = combineLatest([
+        this.pageVisible$,
+        this.canvasVisible$,
+      ])
+        .pipe (
+          map(([pageVisible, elementVisible]) => pageVisible && elementVisible),
+          distinctUntilChanged()
+        );
+
+      if (this.config.RESIZE) {
+        this.resizeCanvas(this.canvas);
+      }
+
+      const ctx = getWebGLContext(this.canvas);
+      this.gl = ctx.gl;
+      this.ext = ctx.ext;
+
+      // this.blit = blit(ctx.gl);
+      this.pointers.push(new PointerPrototype());
+
+      this.config.initialize(ctx.gl, ctx.ext);
+
       this.lastUpdateTime = Date.now();
 
       // Only if element is visible, and tab is open, we execute the rendering.

@@ -15,7 +15,7 @@ Supported Angular Versions
 | Angular Version | WebGL Shader Library     |
 | --------------- | ------------------------ |
 | 10.x            | 0.1.0  - 0.6.1           |
-| 11.x            | 0.7.0  - 0.7.1           |
+| 11.x            | 0.7.0  - 0.7.12           |
 
 ### Step 1: Install
 
@@ -205,6 +205,9 @@ We use [SemVer](http://semver.org/) for versioning.
 - 0.5.0: Update API to add `step` function to `programs` allowing for custom updating of `uniforms`. See example 5.
 - 0.6.0: Update documentation, cleanup.
 - 0.6.1: Update documentation.
+- 0.7.0: Add Support for Angular 11
+- 0.7.1: Add Support for fractionally scaling the rendered Pixels
+- 0.7.2: Changes to what runs outside of zone
 
 ## Authors
 
