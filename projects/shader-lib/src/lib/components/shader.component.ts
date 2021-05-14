@@ -33,9 +33,9 @@ import { distinctUntilChanged, map } from 'rxjs/operators';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
-  // tslint:disable
+  /* eslint-disable */
   selector: 'webgl-shader',
-  // tslint:enable
+  /* eslint-enable */
   template: '<canvas #canvas></canvas>',
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
@@ -207,7 +207,7 @@ export class ShaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
         window.addEventListener('touchend', e => {
           const touches = e.changedTouches;
-          for (let i = 0; i < touches.length; i++) { // tslint:disable-line
+          for (let i = 0; i < touches.length; i++) { // eslint-disable-line
             const pointer = this.pointers.find(p => p.id === touches[i].identifier);
             if (pointer === null) { continue; }
             updatePointerUpData(pointer);
@@ -344,7 +344,7 @@ export class ShaderComponent implements OnInit, AfterViewInit, OnDestroy {
       pointer = new PointerPrototype();
     }
     updatePointerDownData(this.canvas, pointer, -1, posX, posY);
-  }
+  };
 
   private handleKeyDown = (e: KeyboardEvent) => {
     if (e.code === this.config.PAUSE_KEY_CODE) {
@@ -356,5 +356,5 @@ export class ShaderComponent implements OnInit, AfterViewInit, OnDestroy {
     if (e.code === this.config.SCREENSHOT_KEY_CODE) {
       this.captureScreenshot();
     }
-  }
+  };
 }

@@ -30,14 +30,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/shader-lib/tsconfig.lib.json",
-              "projects/shader-lib/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/shader-lib/**/*.ts",
+              "projects/shader-lib/**/*.html"
             ]
           }
         }
@@ -53,7 +50,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "aot": true,
             "outputPath": "dist/example-app",
             "index": "projects/example-app/src/index.html",
             "main": "projects/example-app/src/main.ts",
@@ -66,7 +62,13 @@
             "styles": [
               "projects/example-app/src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -81,7 +83,6 @@
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -134,14 +135,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/example-app/tsconfig.app.json",
-              "projects/example-app/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/example-app//**/*.ts",
+              "projects/example-app//**/*.html"
             ]
           }
         }
@@ -165,16 +163,19 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": "projects/example-app-e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/example-app-e2e//**/*.ts",
+              "projects/example-app-e2e//**/*.html"
             ]
           }
         }
       }
     }
   },
-  "defaultProject": "shader-lib"
+  "defaultProject": "shader-lib",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }
