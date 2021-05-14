@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "start:full": "npm run build:lib && npm start -- --port=4202 --host=0.0.0.0",
-    "build": "ng build --progress=false",
+    "build": "npm run ng build --progress=false",
     "build:lib": "npm run ng build shader-lib --configuration=production --progress=false",
     "test": "npm run test:lib && npm run test:example",
     "test:lib": "ng test shader-lib --no-watch --progress=false --code-coverage --browsers ChromeHeadless",
