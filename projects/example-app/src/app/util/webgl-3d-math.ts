@@ -33,6 +33,7 @@
 
 /**
  * subtracts 2 vectors3s
+ *
  * @param a a
  * @param b b
  * @param dst optional vector3 to store result
@@ -49,6 +50,7 @@ export function subtractVectors(a, b, dst?: Float32Array) {
 
 /**
  * Computes the cross product of 2 vectors3s
+ *
  * @param a a
  * @param b b
  * @param dst optional vector3 to store result
@@ -64,6 +66,7 @@ export function cross(a, b, dst?: Float32Array) {
 
 /**
  * normalizes a vector.
+ *
  * @param v vector to normalize
  * @param dst optional vector3 to store result
  * @return dst or new Vector3 if not provided
@@ -85,6 +88,7 @@ export function normalize(v, dst?: Float32Array) {
  * This is a world matrix for a camera. In other words it will transform
  * from the origin to a place and orientation in the world. For a view
  * matrix take the inverse of this.
+ *
  * @param cameraPosition position of the camera
  * @param target position of the target
  * @param up direction
@@ -120,6 +124,7 @@ export function lookAt(cameraPosition, target, up, dst) {
 
 /**
  * Makes an identity matrix.
+ *
  * @param [dst] optional matrix to store result
  * @return dst or a new matrix if none provided
  */
