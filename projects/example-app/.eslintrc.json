@@ -11,6 +11,7 @@
       "parserOptions": {
         "project": [
           "projects/example-app/tsconfig.app.json",
+          "projects/example-app/tsconfig.app.prod.json",
           "projects/example-app/tsconfig.spec.json"
         ],
         "createDefaultProgram": true

@@ -11,6 +11,7 @@
       "parserOptions": {
         "project": [
           "projects/shader-lib/tsconfig.lib.json",
+          "projects/shader-lib/tsconfig.lib.prod.json",
           "projects/shader-lib/tsconfig.spec.json"
         ],
         "createDefaultProgram": true
