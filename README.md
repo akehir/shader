@@ -17,6 +17,7 @@ Supported Angular Versions
 | 10.x            | 0.1.0  - 0.6.1           |
 | 11.x            | 0.7.0  - 0.7.2           |
 | 12.x            | 0.8.0  - 0.8.1           |
+| 13.x            | 0.9.0  - 0.9.0           |
 
 ### Step 1: Install
 
@@ -199,8 +200,19 @@ We use [SemVer](http://semver.org/) for versioning.
 
 ### Version History
 
-- 1.0.0: Initial Release
-- 1.0.1: Update Readme
+- 0.1.0: Initial Release
+- 0.2.0: Update API for more Complex Use Cases
+- 0.3.0: Update API for more Complex Use Cases
+- 0.4.0: Update API to add `render` function to `programs` allowing for custom `vertices` to be used by a program. See examples 2 and 9.
+- 0.5.0: Update API to add `step` function to `programs` allowing for custom updating of `uniforms`. See example 5.
+- 0.6.0: Update documentation, cleanup.
+- 0.6.1: Update documentation.
+- 0.7.0: Add Support for Angular 11
+- 0.7.1: Add Support for fractionally scaling the rendered Pixels
+- 0.7.2: Changes to what runs outside of zone
+- 0.8.0: Add Support for Angular 12
+- 0.8.1: Simplify API
+- 0.9.0: Add Support for Angular 13
 
 ## Authors
 
