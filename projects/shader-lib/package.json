@@ -1,9 +1,9 @@
 {
   "name": "@triangular/shader",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "peerDependencies": {
-    "@angular/common": "^13.0.0",
-    "@angular/core": "^13.0.0"
+    "@angular/common": "^14.0.0",
+    "@angular/core": "^14.0.0"
   },
   "homepage": "https://shader.akehir.com",
   "license" : "MIT",
