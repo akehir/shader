@@ -20,7 +20,6 @@ Supported Angular Versions
 | 13.x            | 0.9.0   - 0.9.1          |
 | 14.x            | 0.10.0  - 0.10.0         |
 
-
 ### Step 1: Install
 
 Install the npm package.
