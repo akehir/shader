@@ -19,6 +19,7 @@ Supported Angular Versions
 | 12.x            | 0.8.0   - 0.8.1          |
 | 13.x            | 0.9.0   - 0.9.1          |
 | 14.x            | 0.10.0  - 0.10.0         |
+| 15.x            | 0.11.0  - 0.11.0         |
 
 ### Step 1: Install
 
@@ -208,13 +209,15 @@ We use [SemVer](http://semver.org/) for versioning.
 - 0.5.0: Update API to add `step` function to `programs` allowing for custom updating of `uniforms`. See example 5.
 - 0.6.0: Update documentation, cleanup.
 - 0.6.1: Update documentation.
-- 0.7.0: Add Support for Angular 11
-- 0.7.1: Add Support for fractionally scaling the rendered Pixels
+- 0.7.0: Add support for Angular 11
+- 0.7.1: Add support for fractionally scaling the rendered Pixels
 - 0.7.2: Changes to what runs outside of zone
-- 0.8.0: Add Support for Angular 12
+- 0.8.0: Add support for Angular 12
 - 0.8.1: Simplify API
-- 0.9.0: Add Support for Angular 13
+- 0.9.0: Add support for Angular 13
 - 0.9.1: Upgrade rxjs to 7.4
+- 0.10.0: Add support for Angular 14
+- 0.11.0: Add support for Angular 15
 
 ## Authors
 
