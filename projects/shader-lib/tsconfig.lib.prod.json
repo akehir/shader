@@ -4,7 +4,5 @@
     "declarationMap": false
   },
   "angularCompilerOptions": {
-    "enableIvy": true,
-    "compilationMode": "partial"
   }
 }
