@@ -19,7 +19,7 @@ Supported Angular Versions
 | 12.x            | 0.8.0   - 0.8.1          |
 | 13.x            | 0.9.0   - 0.9.1          |
 | 14.x            | 0.10.0  - 0.10.0         |
-| 15.x            | 0.11.0  - 0.11.1         |
+| 15.x            | 0.11.0  - 0.11.2         |
 
 ### Step 1: Install
 
@@ -219,6 +219,7 @@ We use [SemVer](http://semver.org/) for versioning.
 - 0.10.0: Add support for Angular 14
 - 0.11.0: Add support for Angular 15
 - 0.11.1: Cleanup
+- 0.11.2: Cleanup
 
 
 ## Authors
