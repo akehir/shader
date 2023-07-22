@@ -12,6 +12,7 @@ export class Program implements WebGLProgram {
   vao: WebGLVertexArrayObject;
   position: GLint;
   render: (buffer?: WebGLFramebuffer) => void;
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   step: (dt?: number) => void = () => {};
 
   constructor(

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ShaderComponent } from './shader.component';
 
@@ -11,11 +11,11 @@ describe('FluidSimulationComponent', () => {
   let component: ShaderComponent;
   let fixture: ComponentFixture<ShaderComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShaderComponent ],
+      declarations: [  ],
       imports: [
-        RouterTestingModule,
+        RouterTestingModule,ShaderComponent
       ],
       providers: [
         {

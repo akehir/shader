@@ -24,11 +24,11 @@ export class ShaderService implements ShaderConfig {
   RESOLUTION_FACTOR: number;
 
   private gl: Context | null;
-  private ext: any;
   private ready$: Subject<void> = new ReplaySubject(1);
   programs: { [key: string]: Program } = {};
 
-  initialize(gl: Context, ext: any) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  initialize(gl: Context, ext: unknown) {
     this.gl = gl;
     this.ready$.next();
   }

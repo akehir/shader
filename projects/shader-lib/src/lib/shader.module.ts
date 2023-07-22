@@ -5,7 +5,8 @@ import { ShaderConfigValue, ShaderConfig } from './config/shader-config';
 import { Partial } from './common';
 
 @NgModule({
-  declarations: [ShaderComponent],
+  declarations: [],
+  imports: [ShaderComponent],
   exports: [ShaderComponent]
 })
 export class ShaderModule {

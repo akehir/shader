@@ -5,7 +5,7 @@ import {ngModule, component, styles, service, moduleWithConfiguration} from './c
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: [],
   encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent {
@@ -26,6 +26,4 @@ export class AppComponent {
   example8 = false;
   example9 = false;
   example10 = false;
-
-  constructor() {}
 }

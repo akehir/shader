@@ -20,6 +20,7 @@ Supported Angular Versions
 | 13.x            | 0.9.0   - 0.9.1          |
 | 14.x            | 0.10.0  - 0.10.0         |
 | 15.x            | 0.11.0  - 0.11.3         |
+| 16.x            | 0.12.0  - 0.12.0         |
 
 ### Step 1: Install
 
@@ -32,6 +33,8 @@ npm i @triangular/shader
 ### Step 2: Add to NgModule Imports
 
 Then, add the __FluidSimulationModule__ to the imports of your app.
+
+_If you're using standalone components, you can skip this step._
 
 ```typescript
 import { ShaderModule } from '@triangular/shader';

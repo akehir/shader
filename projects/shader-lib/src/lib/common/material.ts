@@ -1,6 +1,5 @@
 import { hashCode } from './hash-code';
 import { Context } from './context';
-import { Program } from './program';
 import { Shader } from './shader';
 import { compileShader } from './compile-shader';
 import { createProgram } from './create-program';
@@ -24,13 +23,13 @@ export class Material {
 
   setKeywords(keywords) {
     let hash = 0;
-    for (let i = 0; i < keywords.length; i++) { // eslint-disable-line
+    for (let i = 0; i < keywords.length; i++) { // eslint-disable-next-line-line
       hash += hashCode(keywords[i]);
     }
 
     let program = this.programs[hash];
     if (program == null) {
-      const fragmentShader = (gl, ext?) => compileShader(gl, gl.FRAGMENT_SHADER, displayShaderSource, keywords);
+      const fragmentShader = (gl) => compileShader(gl, gl.FRAGMENT_SHADER, displayShaderSource, keywords);
       program = createProgram(this.gl, this.vertexShader, fragmentShader);
       this.programs[hash] = program; // converting from WebGLProgram to custom Program
     }

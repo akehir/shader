@@ -2,7 +2,6 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  OnInit,
   ViewChild,
   ViewEncapsulation,
   NgZone,
@@ -13,7 +12,6 @@ import {
 import { ShaderService } from '../services/shader-service';
 
 import {
-  blit,
   Context,
   getWebGLContext,
   PointerPrototype,
@@ -33,14 +31,15 @@ import { distinctUntilChanged, map } from 'rxjs/operators';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
-  /* eslint-disable */
+  /* eslint-disable-next-line */
   selector: 'webgl-shader',
   /* eslint-enable */
   template: '<canvas #canvas></canvas>',
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
+  standalone: true
 })
-export class ShaderComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ShaderComponent implements AfterViewInit, OnDestroy {
   @ViewChild('canvas', {static: true}) canvasRef: ElementRef;
 
   private canvas: HTMLCanvasElement;
@@ -68,7 +67,7 @@ export class ShaderComponent implements OnInit, AfterViewInit, OnDestroy {
   private activeStateChange$: Observable<boolean>;
 
   constructor(
-    @Inject(DOCUMENT) document: any,
+    @Inject(DOCUMENT) document: Document,
     private zone: NgZone,
     private config: ShaderService,
     ) {
@@ -77,12 +76,9 @@ export class ShaderComponent implements OnInit, AfterViewInit, OnDestroy {
       defer(() => of(!document.hidden)),
       fromEvent(document, 'visibilitychange')
         .pipe(
-          map(e => !document.hidden)
+          map(() => !document.hidden)
         )
     );
-  }
-
-  ngOnInit() {
   }
 
   ngOnDestroy() {
@@ -207,7 +203,7 @@ export class ShaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
         window.addEventListener('touchend', e => {
           const touches = e.changedTouches;
-          for (let i = 0; i < touches.length; i++) { // eslint-disable-line
+          for (let i = 0; i < touches.length; i++) { // eslint-disable-next-line-line
             const pointer = this.pointers.find(p => p.id === touches[i].identifier);
             if (pointer === null) { continue; }
             updatePointerUpData(pointer);

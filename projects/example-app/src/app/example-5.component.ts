@@ -96,7 +96,7 @@ export class Example5Component implements AfterViewInit, OnDestroy {
 
 
         // todo: set the iMat -> Matrix4...
-        const orbitSmooth = 0.995;
+        // const orbitSmooth = 0.995;
         // const float orbit_dist = level_copy.orbit_dist; // ->>> 3.3
         // cam_pos = orbit_pt + perp_vec * (orbit_dist * 2.5f);
         // cam_pos_smooth = cam_pos_smooth*orbit_smooth + cam_pos*(1 - orbit_smooth);

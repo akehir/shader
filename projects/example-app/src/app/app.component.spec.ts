@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { ExampleComponent } from './example.component';
 import { ShaderModule, ShaderService } from '@triangular/shader';
@@ -14,7 +14,7 @@ import { Example10Component } from './example-10.component';
 import { Example1Component } from './example-1.component';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
