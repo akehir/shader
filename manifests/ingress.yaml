@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: shader-ingress
+  namespace: triangular
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: shader.akehir.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: shader
+                port:
+                  number: 8001
+  tls:
+    - hosts:
+      - shader.akehir.com
+      secretName: shader-akehir-com
