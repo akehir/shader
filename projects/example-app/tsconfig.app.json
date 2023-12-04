@@ -7,6 +7,7 @@
   "files": [
     "src/main.ts",
     "src/polyfills.ts",
-    "src/environments/environment.prod.ts"
+    "src/environments/environment.prod.ts",
+    "src/app/shaders/shadertoy-base.fragment.shader.ts"
   ]
 }
