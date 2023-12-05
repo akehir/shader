@@ -14,14 +14,12 @@ variables:
 
 build:
   stage: build
-  image: node
+  image: registry.akehir.com:5050/infra/node-with-chromium/node-with-chromium:latest
   rules:
     - if: '$CI_COMMIT_REF_SLUG == "master"'
     - if: '$CI_COMMIT_REF_SLUG == "develop"'
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
   before_script:
-    - apt update
-    - apt install chromium -y
     - export CHROME_BIN=/usr/bin/chromium
     - npm i
   script:
@@ -56,7 +54,7 @@ deploy:
 
 publish:
   stage: publish
-  image: node
+  image: registry.akehir.com:5050/infra/node-with-chromium/node-with-chromium:latest
   needs: ['build']
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
