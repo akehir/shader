@@ -31,12 +31,12 @@ deploy:
     - metal
   needs: ['build']
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-      when: never
     - if: '$CI_COMMIT_REF_SLUG == "master"'
       when: on_success
     - if: '$CI_COMMIT_REF_SLUG == "develop"'
       when: on_success
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: never
   variables:
     IMAGE_TAG: $CI_REGISTRY_IMAGE/shader-example-app
   script:
@@ -49,10 +49,10 @@ publish:
   image: node:lts-alpine
   needs: ['build']
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-      when: never
     - if: '$CI_COMMIT_REF_SLUG == "master"'
       when: on_success
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: never
   script:
     - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>~/.npmrc
     - cd $CI_PROJECT_DIR/dist/shader-lib
