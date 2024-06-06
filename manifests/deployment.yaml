@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: shader-example-app
-        image: registry.akehir.com:443/triangular/shader/shader-example-app:develop-d309dcdc-1715602850 # {"$imagepolicy": "triangular:shader-example-app-image-policy"}
+        image: registry.akehir.com:443/triangular/shader/shader-example-app:develop-08400ff9-1717681781 # {"$imagepolicy": "triangular:shader-example-app-image-policy"}
         imagePullPolicy: Always
         ports:
         - containerPort: 8811
