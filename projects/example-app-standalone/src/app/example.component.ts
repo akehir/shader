@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewEncapsulation } from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 import {ShaderComponent, ShaderService} from '@triangular/shader';
 import { baseVertexShader } from './shaders/base.vertex.shader';
 import { singleColorFragmentShader } from './shaders/single-color.fragment.shader';
@@ -8,13 +8,14 @@ import { singleColorFragmentShader } from './shaders/single-color.fragment.shade
   templateUrl: './example.component.html',
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     ShaderService,
   ],
   imports: [
     ShaderComponent
   ],
-  standalone: true
+  standalone: true,
 })
 export class ExampleComponent implements AfterViewInit {
 

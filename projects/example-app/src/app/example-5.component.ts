@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, ViewEncapsulation } from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, ViewEncapsulation} from '@angular/core';
 import { ShaderService } from '@triangular/shader';
 import { MarbleMarcherVertexShader } from './shaders/marble-marcher.vertex.shader';
 import { MarbleMarcherFragmentShader } from './shaders/marble-marcher.fragment.shader';
@@ -10,6 +10,7 @@ import { identity, lookAt } from './util/webgl-3d-math';
   templateUrl: './example.component.html',
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     ShaderService,
   ]

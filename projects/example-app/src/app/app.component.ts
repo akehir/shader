@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 import {ngModule, component, styles, service, moduleWithConfiguration} from './code';
 
 
@@ -7,6 +7,7 @@ import {ngModule, component, styles, service, moduleWithConfiguration} from './c
   templateUrl: './app.component.html',
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   title = 'Angular WebGL Shaders';

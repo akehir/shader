@@ -60,6 +60,7 @@ import { ShaderService } from '@triangular/shader';
   selector: 'app-example',
   templateUrl: './example.component.html',
   styleUrls: ['./example.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExampleComponent {
 
