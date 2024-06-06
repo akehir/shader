@@ -6,7 +6,7 @@ import {
   ViewEncapsulation,
   NgZone,
   OnDestroy,
-  Inject,
+  Inject, ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { ShaderService } from '../services/shader-service';
@@ -37,6 +37,7 @@ import { DOCUMENT } from '@angular/common';
   template: '<canvas #canvas></canvas>',
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true
 })
 export class ShaderComponent implements AfterViewInit, OnDestroy {

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewEncapsulation } from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 import { ShaderService } from '@triangular/shader';
 import { baseVertexShader } from './shaders/base.vertex.shader';
 import { proteanCloudsFragmentShader } from './shaders/shadertoy-protean-clouds.fragment.shader';
@@ -8,6 +8,7 @@ import { proteanCloudsFragmentShader } from './shaders/shadertoy-protean-clouds.
   templateUrl: './example.component.html',
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     ShaderService,
   ]

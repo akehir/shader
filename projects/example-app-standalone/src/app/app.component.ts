@@ -1,5 +1,5 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {ExampleComponent} from "./example.component";
 
 @Component({
@@ -7,7 +7,9 @@ import {ExampleComponent} from "./example.component";
   standalone: true,
   imports: [CommonModule, ExampleComponent],
   templateUrl: './app.component.html',
-  styleUrls: []
+  styleUrls: [],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
   title = 'example-app-standalone';

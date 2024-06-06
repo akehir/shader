@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewEncapsulation } from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 import { ShaderService } from '@triangular/shader';
 import { baseVertexShader } from './shaders/base.vertex.shader';
 import { glslSandboxE68540F2 } from './shaders/gslsandbox-e-68540.2.fragment.shader';
@@ -8,6 +8,7 @@ import { glslSandboxE68540F2 } from './shaders/gslsandbox-e-68540.2.fragment.sha
   templateUrl: './example.component.html',
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     ShaderService,
   ]
