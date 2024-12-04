@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,7 +15,7 @@ spec:
     spec:
       containers:
         - name: shader-example-app
-          image: registry.akehir.com:443/triangular/shader/shader-example-app:develop-ca9f466c-1727801385 # {"$imagepolicy": "triangular:shader-example-app-image-policy"}
+          image: registry.akehir.com:443/triangular/shader/shader-example-app:develop-e9b23bab-1733323393 # {"$imagepolicy": "triangular:shader-example-app-image-policy"}
           imagePullPolicy: Always
           ports:
             - containerPort: 8811
@@ -32,4 +31,3 @@ spec:
                     operator: In
                     values:
                       - arm64
----
