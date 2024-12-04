@@ -3,6 +3,7 @@ import { ShaderService } from '@triangular/shader';
 import { baseVertexShader } from './shaders/base.vertex.shader';
 import { proteanCloudsFragmentShader } from './shaders/shadertoy-protean-clouds.fragment.shader';
 
+// eslint-disable-next-line @angular-eslint/prefer-standalone
 @Component({
   selector: 'app-example-3',
   templateUrl: './example.component.html',
@@ -10,8 +11,9 @@ import { proteanCloudsFragmentShader } from './shaders/shadertoy-protean-clouds.
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    ShaderService,
-  ]
+      ShaderService,
+  ],
+  standalone: false
 })
 export class Example3Component implements AfterViewInit {
 

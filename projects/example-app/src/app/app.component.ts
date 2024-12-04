@@ -1,13 +1,14 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 import {ngModule, component, styles, service, moduleWithConfiguration} from './code';
 
-
+// eslint-disable-next-line @angular-eslint/prefer-standalone
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class AppComponent {
   title = 'Angular WebGL Shaders';

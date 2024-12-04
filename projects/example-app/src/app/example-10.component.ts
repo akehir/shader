@@ -3,6 +3,7 @@ import { ShaderService } from '@triangular/shader';
 import { baseVertexShader } from './shaders/base.vertex.shader';
 import { ShaderToyDefault } from './shaders/shadertoy-default.fragment.shader';
 
+// eslint-disable-next-line @angular-eslint/prefer-standalone
 @Component({
   selector: 'app-example-10',
   templateUrl: './example.component.html',
@@ -10,8 +11,9 @@ import { ShaderToyDefault } from './shaders/shadertoy-default.fragment.shader';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    ShaderService,
-  ]
+      ShaderService,
+  ],
+  standalone: false
 })
 export class Example10Component implements AfterViewInit {
 
