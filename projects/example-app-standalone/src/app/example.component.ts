@@ -4,18 +4,17 @@ import { baseVertexShader } from './shaders/base.vertex.shader';
 import { singleColorFragmentShader } from './shaders/single-color.fragment.shader';
 
 @Component({
-  selector: 'app-example',
-  templateUrl: './example.component.html',
-  styleUrls: [],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    ShaderService,
-  ],
-  imports: [
-    ShaderComponent
-  ],
-  standalone: true,
+    selector: 'app-example',
+    templateUrl: './example.component.html',
+    styleUrls: [],
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [
+        ShaderService,
+    ],
+    imports: [
+        ShaderComponent
+    ]
 })
 export class ExampleComponent implements AfterViewInit {
 

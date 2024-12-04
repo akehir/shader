@@ -1,6 +1,4 @@
-# Documentation
-# https://docs.gitlab.com/ee/ci/yaml/
-
+---
 stages:
   - build
   - deploy
@@ -55,6 +53,13 @@ deploy:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker build -t $IMAGE_TAG:latest -t $IMAGE_TAG:$CI_COMMIT_REF_SLUG -t $IMAGE_TAG:$CI_COMMIT_SHORT_SHA -t $IMAGE_TAG:${CI_COMMIT_REF_SLUG}-${CI_COMMIT_SHORT_SHA}-$(date +%s) .
     - docker push $IMAGE_TAG -a
+
+yaml-lint:
+  stage: build
+  image: registry.akehir.com/infra/yamllint/yamllint
+  script:
+    - yamllint --list-files .
+    - yamllint .
 
 publish:
   stage: publish

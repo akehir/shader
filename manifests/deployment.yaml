@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -14,20 +15,21 @@ spec:
         app: shader
     spec:
       containers:
-      - name: shader-example-app
-        image: registry.akehir.com:443/triangular/shader/shader-example-app:develop-ca9f466c-1727801385 # {"$imagepolicy": "triangular:shader-example-app-image-policy"}
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 8811
+        - name: shader-example-app
+          image: registry.akehir.com:443/triangular/shader/shader-example-app:develop-ca9f466c-1727801385 # {"$imagepolicy": "triangular:shader-example-app-image-policy"}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8811
       imagePullSecrets:
-      - name: deploy-triangular
+        - name: deploy-triangular
       affinity:
         nodeAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 1
-            preference:
-              matchExpressions:
-              - key: kubernetes.io/arch
-                operator: In
-                values:
-                - arm64
+            - weight: 1
+              preference:
+                matchExpressions:
+                  - key: kubernetes.io/arch
+                    operator: In
+                    values:
+                      - arm64
+---
