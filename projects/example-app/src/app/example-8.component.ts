@@ -3,7 +3,6 @@ import { ShaderService } from '@triangular/shader';
 import { baseVertexShader } from './shaders/base.vertex.shader';
 import { glslSandboxE68518F1 } from './shaders/gslsandbox-e-68518.1.fragment.shader';
 
-// eslint-disable-next-line @angular-eslint/prefer-standalone
 @Component({
   selector: 'app-example-8',
   templateUrl: './example.component.html',
@@ -13,7 +12,7 @@ import { glslSandboxE68518F1 } from './shaders/gslsandbox-e-68518.1.fragment.sha
   providers: [
       ShaderService,
   ],
-  standalone: false
+  standalone: false // eslint-disable-line @angular-eslint/prefer-standalone
 })
 export class Example8Component implements AfterViewInit {
 

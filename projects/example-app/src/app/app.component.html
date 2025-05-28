@@ -1,79 +1,99 @@
 <main>
-<h1>{{ title }}</h1>
-<section>
-  <p>If you want to use a fancy WebGL shaders in your Angular App, this small demo can get you started.</p>
-  <p>You can see the component running in the background of this example app. Press <strong>p</strong> to toggle the pause, and press <strong>s</strong> to download a screenshot of the simulation. Press <strong>w</strong> to create more splashes.</p>
-</section>
-<section>
-  <h2>Example</h2>
-  <p>Click the buttons to toggle the examples</p>
-  <button (click)="example1 = !example1">Example 1</button>
-  <button (click)="example2 = !example2">Example 2</button>
-  <button (click)="example3 = !example3">Example 3</button>
-  <button (click)="example4 = !example4">Example 4</button>
-  <button (click)="example5 = !example5">Example 5</button>
-  <button (click)="example6 = !example6">Example 6</button>
-  <button (click)="example7 = !example7">Example 7</button>
-  <button (click)="example8 = !example8">Example 8</button>
-  <button (click)="example9 = !example9">Example 9</button>
-  <button (click)="example10 = !example10">Example 10</button>
-<!--  <app-example></app-example>-->
-  <app-example-1 *ngIf="example1"></app-example-1>
-  <app-example-2 *ngIf="example2"></app-example-2>
-  <app-example-3 *ngIf="example3"></app-example-3>
-  <app-example-4 *ngIf="example4"></app-example-4>
-  <app-example-5 *ngIf="example5"></app-example-5>
-  <app-example-6 *ngIf="example6"></app-example-6>
-  <app-example-7 *ngIf="example7"></app-example-7>
-  <app-example-8 *ngIf="example8"></app-example-8>
-  <app-example-9 *ngIf="example9"></app-example-9>
-  <app-example-10 *ngIf="example10"></app-example-10>
-</section>
-<section>
-  <h2>Usage</h2>
-  <h3>Step 1: Install</h3>
-  <p>Install the npm package.</p>
-  <pre>npm i &#64;triangular/shader</pre>
+  <h1>{{ title }}</h1>
+  <section>
+    <p>If you want to use a fancy WebGL shaders in your Angular App, this small demo can get you started.</p>
+    <p>You can see the component running in the background of this example app. Press <strong>p</strong> to toggle the pause, and press <strong>s</strong> to download a screenshot of the simulation. Press <strong>w</strong> to create more splashes.</p>
+  </section>
+  <section>
+    <h2>Example</h2>
+    <p>Click the buttons to toggle the examples</p>
+    <button (click)="example1 = !example1">Example 1</button>
+    <button (click)="example2 = !example2">Example 2</button>
+    <button (click)="example3 = !example3">Example 3</button>
+    <button (click)="example4 = !example4">Example 4</button>
+    <button (click)="example5 = !example5">Example 5</button>
+    <button (click)="example6 = !example6">Example 6</button>
+    <button (click)="example7 = !example7">Example 7</button>
+    <button (click)="example8 = !example8">Example 8</button>
+    <button (click)="example9 = !example9">Example 9</button>
+    <button (click)="example10 = !example10">Example 10</button>
+    <!--  <app-example></app-example>-->
+    @if (example1) {
+      <app-example-1></app-example-1>
+    }
+    @if (example2) {
+      <app-example-2></app-example-2>
+    }
+    @if (example3) {
+      <app-example-3></app-example-3>
+    }
+    @if (example4) {
+      <app-example-4></app-example-4>
+    }
+    @if (example5) {
+      <app-example-5></app-example-5>
+    }
+    @if (example6) {
+      <app-example-6></app-example-6>
+    }
+    @if (example7) {
+      <app-example-7></app-example-7>
+    }
+    @if (example8) {
+      <app-example-8></app-example-8>
+    }
+    @if (example9) {
+      <app-example-9></app-example-9>
+    }
+    @if (example10) {
+      <app-example-10></app-example-10>
+    }
+  </section>
+  <section>
+    <h2>Usage</h2>
+    <h3>Step 1: Install</h3>
+    <p>Install the npm package.</p>
+    <pre>npm i &#64;triangular/shader</pre>
 
-  <h3>Step 2: Add to NgModule Imports</h3>
-  <p>Then, add the <strong>ShaderModule</strong> to the imports of your app, as follows:</p>
-  <p><em>If you're using standalone components, you can skip this step.</em></p>
-  <pre>{{step2}}</pre>
+    <h3>Step 2: Add to NgModule Imports</h3>
+    <p>Then, add the <strong>ShaderModule</strong> to the imports of your app, as follows:</p>
+    <p><em>If you're using standalone components, you can skip this step.</em></p>
+    <pre>{{step2}}</pre>
 
-  <h3>Step 3: Add Component to App</h3>
-  <p>Now you can use the provided component <strong>&lt;webgl-shader&gt;&lt;/webgl-shader&gt;</strong> in your app.
-  <pre>{{step3a}}</pre>
+    <h3>Step 3: Add Component to App</h3>
+    <p>Now you can use the provided component <strong>&lt;webgl-shader&gt;&lt;/webgl-shader&gt;</strong> in your app.
+    <pre>{{step3a}}</pre>
 
-  <p>Depending on whether you want to use certain features, or positions for the module, you can add styles as follows.
+    <p>Depending on whether you want to use certain features, or positions for the module, you can add styles as follows.
     It is important to note, that the canvas itself should not be absolutely positioned.</p>
 
-  <pre>{{step3b}}</pre>
+    <pre>{{step3b}}</pre>
 
-  <p>You can configure your module by using the <strong>ShaderModule.forRoot()</strong> method.</p>
+    <p>You can configure your module by using the <strong>ShaderModule.forRoot()</strong> method.</p>
 
-  <pre>{{step3c}}</pre>
+    <pre>{{step3c}}</pre>
 
-  <p>If you want to use a dithering texture, you will need to change the config, and provide the texture file as a .png</p>
+    <p>If you want to use a dithering texture, you will need to change the config, and provide the texture file as a .png</p>
 
-  <p>The example component has the png under <strong>assets/LDR_LLL1_0.png</strong>, and configured shown as above.</p>
+    <p>The example component has the png under <strong>assets/LDR_LLL1_0.png</strong>, and configured shown as above.</p>
 
 
-  <p>In order to change the config interactively (for instance pausing and playing the simulation, or changing the settings) , you can use the provided service.</p>
+    <p>In order to change the config interactively (for instance pausing and playing the simulation, or changing the settings) , you can use the provided service.</p>
 
-  <p>The service will be extended to include more functionality (for example triggering screenshots or adding splashes).</p>
+    <p>The service will be extended to include more functionality (for example triggering screenshots or adding splashes).</p>
 
-  <pre>{{step3d}}</pre>
+    <pre>{{step3d}}</pre>
 
-</section>
-<section>
-  <h2>Source Code</h2>
-  <p>
-    The source code is published at <a href="https://git.akehir.com/akehir/shader">akehir.com</a> and mirrored on <a href="https://github.com/akehir/shader">Github</a>.
-  </p>
-  <p>The package ist published to npm at <a href="https://www.npmjs.com/package/@triangular/shader">&#64;triangular/shader</a>.</p>
-</section>
-<section>
-  <h2>License</h2>
-  <p>This project is licensed under the MIT License</p>
-</section>
+  </section>
+  <section>
+    <h2>Source Code</h2>
+    <p>
+      The source code is published at <a href="https://git.akehir.com/akehir/shader">akehir.com</a> and mirrored on <a href="https://github.com/akehir/shader">Github</a>.
+    </p>
+    <p>The package ist published to npm at <a href="https://www.npmjs.com/package/@triangular/shader">&#64;triangular/shader</a>.</p>
+  </section>
+  <section>
+    <h2>License</h2>
+    <p>This project is licensed under the MIT License</p>
+  </section>
 </main>

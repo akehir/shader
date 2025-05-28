@@ -9,7 +9,9 @@
     <p>Click the buttons to toggle the examples</p>
     <button (click)="example = !example">Example</button>
     <!--  <app-example></app-example>-->
-    <app-example *ngIf="example"></app-example>
+    @if (example) {
+      <app-example></app-example>
+    }
   </section>
   <section>
     <h2>Source Code</h2>
