@@ -5,7 +5,6 @@ import { MarbleMarcherFragmentShader } from './shaders/marble-marcher.fragment.s
 import { tap } from 'rxjs/operators';
 import { identity, lookAt } from './util/webgl-3d-math';
 
-// eslint-disable-next-line @angular-eslint/prefer-standalone
 @Component({
   selector: 'app-example-5',
   templateUrl: './example.component.html',
@@ -15,7 +14,7 @@ import { identity, lookAt } from './util/webgl-3d-math';
   providers: [
       ShaderService,
   ],
-  standalone: false
+  standalone: false // eslint-disable-line @angular-eslint/prefer-standalone
 })
 export class Example5Component implements AfterViewInit, OnDestroy {
 

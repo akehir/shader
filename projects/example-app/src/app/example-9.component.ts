@@ -3,7 +3,6 @@ import { ShaderService } from '@triangular/shader';
 import { pointCloudSpheresFragmentShader } from './shaders/vertexshaderart-point-cloud-spheres.fragment.shader';
 import { pointCloudSpheresVertexShader } from './shaders/vertexshaderart-point-cloud-spheres.vertex.shader';
 
-// eslint-disable-next-line @angular-eslint/prefer-standalone
 @Component({
   selector: 'app-example-9',
   templateUrl: './example.component.html',
@@ -13,7 +12,7 @@ import { pointCloudSpheresVertexShader } from './shaders/vertexshaderart-point-c
   providers: [
       ShaderService,
   ],
-  standalone: false
+  standalone: false // eslint-disable-line @angular-eslint/prefer-standalone
 })
 export class Example9Component implements AfterViewInit {
 

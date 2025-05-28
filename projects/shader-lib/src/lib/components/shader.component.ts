@@ -7,6 +7,7 @@ import {
   NgZone,
   OnDestroy,
   Inject, ChangeDetectionStrategy,
+  DOCUMENT
 } from '@angular/core';
 
 import { ShaderService } from '../services/shader-service';
@@ -28,7 +29,7 @@ import {
 } from '../common';
 import { combineLatest, concat, defer, fromEvent, Observable, of } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
-import { DOCUMENT } from '@angular/common';
+
 
 @Component({
   /* eslint-disable-next-line */
