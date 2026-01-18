@@ -7,7 +7,12 @@ spec:
   selector:
     matchLabels:
       app: shader
-  replicas: 1
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 1
   template:
     metadata:
       labels:
@@ -15,7 +20,7 @@ spec:
     spec:
       containers:
         - name: shader-example-app
-          image: registry.akehir.com:443/triangular/shader/shader-example-app:develop-da6456a7-1748474159 # {"$imagepolicy": "triangular:shader-example-app-image-policy"}
+          image: registry.akehir.com:443/triangular/shader/shader-example-app:develop-6eaf7814-1748474383 # {"$imagepolicy": "triangular:shader-example-app-image-policy"}
           imagePullPolicy: Always
           ports:
             - containerPort: 8811
@@ -31,3 +36,13 @@ spec:
                     operator: In
                     values:
                       - arm64
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: module
+                    operator: In
+                    values:
+                      - shader
+              topologyKey: "kubernetes.io/hostname"
+---

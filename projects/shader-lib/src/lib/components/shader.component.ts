@@ -1,14 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  ViewChild,
-  ViewEncapsulation,
-  NgZone,
-  OnDestroy,
-  Inject, ChangeDetectionStrategy,
-  DOCUMENT
-} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild, ViewEncapsulation, NgZone, OnDestroy, ChangeDetectionStrategy, DOCUMENT, inject } from '@angular/core';
 
 import { ShaderService } from '../services/shader-service';
 
@@ -42,6 +32,9 @@ import { distinctUntilChanged, map } from 'rxjs/operators';
   standalone: true
 })
 export class ShaderComponent implements AfterViewInit, OnDestroy {
+  private zone = inject(NgZone);
+  private config = inject(ShaderService);
+
   @ViewChild('canvas', {static: true}) canvasRef: ElementRef;
 
   private canvas: HTMLCanvasElement;
@@ -68,11 +61,9 @@ export class ShaderComponent implements AfterViewInit, OnDestroy {
   private canvasVisible$: Observable<boolean>;
   private activeStateChange$: Observable<boolean>;
 
-  constructor(
-    @Inject(DOCUMENT) document: Document,
-    private zone: NgZone,
-    private config: ShaderService,
-    ) {
+  constructor() {
+    const document = inject<Document>(DOCUMENT);
+
     // As per: https://medium.com/angular-in-depth/improve-performance-with-lazy-components-f3c5ff4597d2
     this.pageVisible$ = concat(
       defer(() => of(!document.hidden)),

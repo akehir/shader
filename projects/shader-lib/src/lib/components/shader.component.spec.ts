@@ -1,23 +1,26 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ShaderComponent } from './shader.component';
 
-import { RouterTestingModule } from '@angular/router/testing';
 import { ShaderConfigValue } from '../config/shader-config';
 import { defaultConfig } from '../config/default-config';
 import { ShaderService } from '../services/shader-service';
+import { provideZonelessChangeDetection } from "@angular/core";
+import { provideRouter } from "@angular/router";
 
 describe('FluidSimulationComponent', () => {
   let component: ShaderComponent;
   let fixture: ComponentFixture<ShaderComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() =>
     TestBed.configureTestingModule({
       declarations: [  ],
       imports: [
-        RouterTestingModule,ShaderComponent
+        ShaderComponent
       ],
       providers: [
+        provideRouter([]),
+        provideZonelessChangeDetection(),
         {
           provide: ShaderConfigValue,
           useValue: defaultConfig,
@@ -25,8 +28,8 @@ describe('FluidSimulationComponent', () => {
         ShaderService,
       ],
     })
-    .compileComponents();
-  }));
+    .compileComponents()
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ShaderComponent);

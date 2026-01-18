@@ -1,4 +1,4 @@
-import { Inject, Injectable, Optional } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { ShaderConfig, ShaderConfigValue } from '../config/shader-config';
 import { defaultConfig } from '../config/default-config';
 import { compileShader, Context, Partial, Program } from '../common';
@@ -66,7 +66,9 @@ export class ShaderService implements ShaderConfig {
     );
   }
 
-  constructor(@Optional() @Inject(ShaderConfigValue) config: Partial<ShaderConfig>) {
+  constructor() {
+    const config = inject<Partial<ShaderConfig>>(ShaderConfigValue, { optional: true });
+
     Object.assign(this, defaultConfig);
 
     if (config) {
