@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ViewEncapsulation, inject } from '@angular/core';
 import { ShaderService } from '@triangular/shader';
 import { baseVertexShader } from './shaders/base.vertex.shader';
 import { proteanCloudsFragmentShader } from './shaders/shadertoy-protean-clouds.fragment.shader';
@@ -15,8 +15,8 @@ import { proteanCloudsFragmentShader } from './shaders/shadertoy-protean-clouds.
   standalone: false // eslint-disable-line @angular-eslint/prefer-standalone
 })
 export class ExampleComponent implements AfterViewInit {
+  private shader = inject(ShaderService);
 
-  constructor(private shader: ShaderService) {}
 
   ngAfterViewInit() {
     this.shader.RESIZE = true;

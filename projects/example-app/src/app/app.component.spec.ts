@@ -1,4 +1,4 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { ExampleComponent } from './example.component';
 import { ShaderModule, ShaderService } from '@triangular/shader';
@@ -12,9 +12,10 @@ import { Example8Component } from './example-8.component';
 import { Example9Component } from './example-9.component';
 import { Example10Component } from './example-10.component';
 import { Example1Component } from './example-1.component';
+import {provideZonelessChangeDetection} from "@angular/core";
 
 describe('AppComponent', () => {
-  beforeEach(waitForAsync(() => {
+  beforeEach(() =>
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
@@ -32,12 +33,13 @@ describe('AppComponent', () => {
       ],
       providers: [
         ShaderService,
+        provideZonelessChangeDetection()
       ],
       imports: [
         ShaderModule.forRoot({}),
       ],
-    }).compileComponents();
-  }));
+    }).compileComponents()
+  );
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);

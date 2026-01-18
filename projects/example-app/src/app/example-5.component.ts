@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, ViewEncapsulation} from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, ViewEncapsulation, inject } from '@angular/core';
 import { ShaderService } from '@triangular/shader';
 import { MarbleMarcherVertexShader } from './shaders/marble-marcher.vertex.shader';
 import { MarbleMarcherFragmentShader } from './shaders/marble-marcher.fragment.shader';
@@ -17,10 +17,10 @@ import { identity, lookAt } from './util/webgl-3d-math';
   standalone: false // eslint-disable-line @angular-eslint/prefer-standalone
 })
 export class Example5Component implements AfterViewInit, OnDestroy {
+  private shader = inject(ShaderService);
+
 
   private listener: (e: KeyboardEvent) => void;
-
-  constructor(private shader: ShaderService) {}
 
   ngOnDestroy() {
     window.removeEventListener('keyup', this.listener);

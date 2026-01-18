@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ViewEncapsulation, inject } from '@angular/core';
 import {ShaderComponent, ShaderService} from '@triangular/shader';
 import { baseVertexShader } from './shaders/base.vertex.shader';
 import { singleColorFragmentShader } from './shaders/single-color.fragment.shader';
@@ -17,8 +17,8 @@ import { singleColorFragmentShader } from './shaders/single-color.fragment.shade
     ]
 })
 export class ExampleComponent implements AfterViewInit {
+  private shader = inject(ShaderService);
 
-  constructor(private shader: ShaderService) {}
 
   ngAfterViewInit() {
     this.shader.createProgram(

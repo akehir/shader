@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ViewEncapsulation, inject } from '@angular/core';
 import { ShaderService } from '@triangular/shader';
 import { pointCloudSpheresFragmentShader } from './shaders/vertexshaderart-point-cloud-spheres.fragment.shader';
 import { pointCloudSpheresVertexShader } from './shaders/vertexshaderart-point-cloud-spheres.vertex.shader';
@@ -15,8 +15,8 @@ import { pointCloudSpheresVertexShader } from './shaders/vertexshaderart-point-c
   standalone: false // eslint-disable-line @angular-eslint/prefer-standalone
 })
 export class Example9Component implements AfterViewInit {
+  private shader = inject(ShaderService);
 
-  constructor(private shader: ShaderService) {}
 
   // https://webgl2fundamentals.org/webgl/lessons/webgl-drawing-without-data.html
   // todo: instead of array / triangle, draw vertexes / point clouds
